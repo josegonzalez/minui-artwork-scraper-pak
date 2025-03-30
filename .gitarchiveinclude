@@ -1,0 +1,8 @@
+bin/arm/jq
+bin/arm/jq.LICENSE
+bin/arm64/jq
+bin/arm64/jq.LICENSE
+bin/rg35xxplus/minui-list
+bin/rg35xxplus/minui-presenter
+bin/tg5040/minui-list
+bin/tg5040/minui-presenter

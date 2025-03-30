@@ -1,0 +1,80 @@
+---
+name: "ci"
+
+# yamllint disable-line rule:truthy
+on:
+  pull_request:
+    branches:
+      - "*"
+  push:
+    branches:
+      - main
+
+permissions:
+  attestations: write
+  id-token: write
+  contents: write
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-24.04-arm
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@v3.6.0
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v3.10.0
+
+      - name: Create release
+        run: make clean build release
+
+      - name: Get Pak Name
+        id: pak-name
+        run: |
+          echo "PAK_NAME=$(jq -r .label config.json)" >> $GITHUB_OUTPUT
+
+      - name: Attest Build Provenance
+        uses: actions/attest-build-provenance@v2.2.3
+        with:
+          subject-path: "dist/${{ steps.pak-name.outputs.PAK_NAME }}.pak.zip"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: "${{ steps.pak-name.outputs.PAK_NAME }}.pak.zip"
+          path: "dist/${{ steps.pak-name.outputs.PAK_NAME }}.pak.zip"
+
+  test-release:
+    name: test-release
+    runs-on: ubuntu-24.04
+    needs: build
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Get Pak Name
+        id: pak-name
+        run: |
+          echo "PAK_NAME=$(jq -r .label config.json)" >> $GITHUB_OUTPUT
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4.2.1
+        with:
+          name: "${{ steps.pak-name.outputs.PAK_NAME }}.pak.zip"
+          path: "dist"
+      
+      - name: Validate Artifact exists
+        run: |
+          if [ ! -f "dist/${{ steps.pak-name.outputs.PAK_NAME }}.pak.zip" ]; then
+            echo "Artifact does not exist"
+            exit 1
+          fi
