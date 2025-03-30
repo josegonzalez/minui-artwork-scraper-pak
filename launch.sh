@@ -71,13 +71,13 @@ main() {
     show_message "Getting roms list" forever
 
     # get list of roms
-    find "$SDCARD_PATH/Roms" -maxdepth 1 -type d | sort >/tmp/emus
-    sed -i '/^[.]/d; /^APPS/d' /tmp/emus
+    ls -A "$SDCARD_PATH/Roms" | sort >/tmp/emus
 
     touch /tmp/emus.list
     while read -r file; do
         basename "$file" >>/tmp/emus.list
     done </tmp/emus
+    sed -i '/^[.]/d; /^APPS/d; /^PORTS/d' /tmp/emus.list
 
     killall minui-presenter >/dev/null 2>&1 || true
     minui-list --file "/tmp/emus.list" --format text --cancel-text "EXIT" --title "Emulator Selection" --write-location /tmp/minui-output --write-value state
