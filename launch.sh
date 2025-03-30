@@ -68,6 +68,8 @@ main() {
     chmod +x "$PAK_DIR/bin/$architecture/jq"
     chmod +x "$PAK_DIR/bin/$PLATFORM/minui-presenter"
 
+    show_message "Getting roms list" forever
+
     # get list of roms
     find "$SDCARD_PATH/Roms" -maxdepth 1 -type d | sort >/tmp/emus
     sed -i '/^[.]/d; /^APPS/d' /tmp/emus
