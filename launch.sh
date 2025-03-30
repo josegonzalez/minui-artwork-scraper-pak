@@ -80,7 +80,7 @@ main() {
     done </tmp/emus
 
     killall minui-presenter >/dev/null 2>&1 || true
-    minui-list --file "/tmp/emus.list" --cancel-text "EXIT" --title "Emulator Selection" --write-location /tmp/minui-output --write-value state
+    minui-list --file "/tmp/emus.list" --format text --cancel-text "EXIT" --title "Emulator Selection" --write-location /tmp/minui-output --write-value state
 }
 
 main "$@"
