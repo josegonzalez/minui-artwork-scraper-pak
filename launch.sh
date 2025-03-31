@@ -65,6 +65,8 @@ fetch_artwork() {
         if [ $? -ne 0 ]; then
             return 1
         fi
+
+        sync
     fi
 
     download_count=0
@@ -100,6 +102,8 @@ fetch_artwork() {
         fi
     done <"$artwork_file"
 
+    sync
+
     is_nextui=false
     image_folder="res"
     base_directory="$SDCARD_PATH/Roms/$ROM_FOLDER/"
@@ -125,6 +129,8 @@ fetch_artwork() {
 
         echo "$rom_name"
     done <"$artwork_file"
+
+    sync
 
     show_message "Copied $download_count images for $rom_count roms" 4
 }
