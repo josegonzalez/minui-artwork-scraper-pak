@@ -101,31 +101,32 @@ fetch_artwork() {
     done <"$artwork_file"
 
     is_nextui=false
-    base_directory="$SDCARD_PATH/Roms/$ROM_FOLDER/.res"
-    if [ "$IS_NEXT" = "true" ] || [ "$IS_NEXTUI" = "yes" ]; then
+    image_folder="res"
+    base_directory="$SDCARD_PATH/Roms/$ROM_FOLDER/"
+    if [ "$IS_NEXT" = "true" ] || [ "$IS_NEXT" = "yes" ]; then
         is_nextui=true
-        base_directory="$SDCARD_PATH/Roms/$ROM_FOLDER/.media"
+        image_folder="media"
     elif [ -f "$SHARED_USERDATA_PATH/minuisettings.txt" ]; then
         is_nextui=true
-        base_directory="$SDCARD_PATH/Roms/$ROM_FOLDER/.media"
+        image_folder="media"
     fi
 
-    show_message "Copying $download_count images to roms" forever
+    show_message "Copying $download_count images to '$ROM_FOLDER' .$image_folder folder" forever
     while read -r line; do
         rom_name="$(echo "$line" | cut -f1)"
         filename="${rom_name%.*}"
 
         mkdir -p "$base_directory"
         if [ "$is_nextui" = "true" ]; then
-            cp -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/$ART_TYPE/$rom_name.png" "$base_directory/$filename.png"
+            cp -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/$ART_TYPE/$rom_name.png" "$base_directory//$image_folder/$filename.png"
         else
-            cp -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/$ART_TYPE/$rom_name.png" "$base_directory/$rom_name.png"
+            cp -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/$ART_TYPE/$rom_name.png" "$base_directory/.$image_folder/$rom_name.png"
         fi
 
         echo "$rom_name"
     done <"$artwork_file"
 
-    show_message "Copied $download_count images out of $rom_count roms" 4
+    show_message "Copied $download_count images for $rom_count roms" 4
 }
 
 get_emu_name() {
