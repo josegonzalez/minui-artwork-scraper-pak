@@ -37,9 +37,8 @@ main_screen() {
     rm -f "$minui_list_file" "/tmp/minui-output"
     touch "$minui_list_file"
 
-    show_message "Getting roms list" forever
-
     if [ ! -f "/tmp/emus.list" ]; then
+        show_message "Populating emus list" forever
         populate_emus_list
     fi
 
