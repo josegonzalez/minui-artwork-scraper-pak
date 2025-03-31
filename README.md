@@ -25,7 +25,10 @@ Use the correct platform for your device.
 > [!IMPORTANT]
 > If the zip file was not extracted correctly, the pak may show up under `Tools > Artwork`. Rename the folder to `Artwork Scraper.pak` to fix this.
 
-Browse to `Tools > Artwork Scraper` and press `A` to enter the Pak.
+Browse to `Tools > Artwork Scraper` and press `A` to enter the Pak. A list of emulator folders with roms inside will be populated. Selecting a folder will hit a remote server for matching rom names to `Named_Snap` images, which will be cached to disk for later usage. Once the cache is populated, all the matched will be downloaded and moved into the correct folder for either MinUI or NextUI.
+
+> [!WARNING]
+> Please note that it is currently not possible to exit out of the scraping process once it has started. You may need to power down your device to force-exit scraping.
 
 ### Debug Logging
 
