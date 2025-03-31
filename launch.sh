@@ -18,7 +18,9 @@ if uname -m | grep -q '64'; then
 fi
 
 export PATH="$PAK_DIR/bin/$architecture:$PAK_DIR/bin/$PLATFORM:$PAK_DIR/bin:$PATH"
+export LD_LIBRARY_PATH="$PAK_DIR/lib/$architecture:$PAK_DIR/lib/$PLATFORM:$PAK_DIR/lib:$LD_LIBRARY_PATH"
 export IMAGE_MATCHER_URL="https://matching-images-is.bittersweet.rip"
+export MINUI_IMAGE_WIDTH=300
 
 populate_emus_list() {
     ls -A "$SDCARD_PATH/Roms" | sort >/tmp/emus
@@ -123,7 +125,7 @@ fetch_artwork() {
         if [ "$is_nextui" = "true" ]; then
             cp -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/$ART_TYPE/$rom_name.png" "$base_directory/.$image_folder/$filename.png"
         else
-            cp -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/$ART_TYPE/$rom_name.png" "$base_directory/.$image_folder/$rom_name.png"
+            gm convert "$SDCARD_PATH/Artwork/$ROM_FOLDER/$ART_TYPE/$rom_name.png" -resize "$MINUI_IMAGE_WIDTH" "$base_directory/.$image_folder/$rom_name.png"
         fi
 
         echo "$rom_name"
@@ -173,7 +175,7 @@ main() {
         export PLATFORM="tg5040"
     fi
 
-    allowed_platforms="tg5040 rg35xxplus"
+    allowed_platforms="tg5040"
     if ! echo "$allowed_platforms" | grep -q "$PLATFORM"; then
         show_message "$PLATFORM is not a supported platform" 2
         return 1

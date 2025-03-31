@@ -3,7 +3,6 @@
     "launch": "launch.sh",
     "description": "Scrapes artwork from the internet",
     "platforms": [
-        "rg35xxplus",
         "tg5040"
     ]
 }

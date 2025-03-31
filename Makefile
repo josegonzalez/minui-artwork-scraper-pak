@@ -1,7 +1,7 @@
 PAK_NAME := $(shell jq -r .label config.json)
 
 ARCHITECTURES := arm arm64
-PLATFORMS := rg35xxplus tg5040
+PLATFORMS := tg5040
 
 JQ_VERSION := 1.7.1
 MINUI_LIST_VERSION := 0.10.1
