@@ -38,4 +38,4 @@ Images are not currently resized, and thus may look incorrect on MinUI devices.
 
 ### Debug Logging
 
-To enable debug logging, create a file named `debug` in the `$SDCARD_PATH/.userdata/$PLATFORM/Artwork Scraper` folder. Logs will be written to the `$SDCARD_PATH/.userdata/$PLATFORM/logs/` folder.
+Debug logs will be written to the `$SDCARD_PATH/.userdata/$PLATFORM/logs/` folder.
