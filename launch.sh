@@ -105,7 +105,7 @@ fetch_artwork() {
 
     is_nextui=false
     image_folder="res"
-    base_directory="$SDCARD_PATH/Roms/$ROM_FOLDER/"
+    base_directory="$SDCARD_PATH/Roms/$ROM_FOLDER"
     if [ "$IS_NEXT" = "true" ] || [ "$IS_NEXT" = "yes" ]; then
         is_nextui=true
         image_folder="media"
