@@ -116,9 +116,9 @@ fetch_artwork() {
         rom_name="$(echo "$line" | cut -f1)"
         filename="${rom_name%.*}"
 
-        mkdir -p "$base_directory"
+        mkdir -p "$base_directory/$image_folder/"
         if [ "$is_nextui" = "true" ]; then
-            cp -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/$ART_TYPE/$rom_name.png" "$base_directory//$image_folder/$filename.png"
+            cp -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/$ART_TYPE/$rom_name.png" "$base_directory/$image_folder/$filename.png"
         else
             cp -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/$ART_TYPE/$rom_name.png" "$base_directory/.$image_folder/$rom_name.png"
         fi
