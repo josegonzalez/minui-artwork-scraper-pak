@@ -1,6 +1,6 @@
 # minui-artwork-scraper.pak
 
-A MinUI app that scrapes artwork for your MinUI or NextUI device.
+A MinUI app that scrapes artwork from the [Libretro Thumbnails Server](https://thumbnails.libretro.com/) for your MinUI or NextUI device.
 
 ## Requirements
 
