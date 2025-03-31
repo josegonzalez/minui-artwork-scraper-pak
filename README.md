@@ -25,13 +25,13 @@ Use the correct platform for your device.
 > [!IMPORTANT]
 > If the zip file was not extracted correctly, the pak may show up under `Tools > Artwork`. Rename the folder to `Artwork Scraper.pak` to fix this.
 
-Browse to `Tools > Artwork Scraper` and press `A` to enter the Pak. A list of emulator folders with roms inside will be populated. Selecting a folder will hit a remote server for matching rom names to `Named_Snap` images, which will be cached to disk for later usage. Once the cache is populated, all the matched will be downloaded and moved into the correct folder for either MinUI or NextUI.
+Browse to `Tools > Artwork Scraper` and press `A` to enter the Pak. A list of emulator folders with roms inside will be populated. Selecting a folder will hit a [remote server](https://matching-images-is.bittersweet.rip) running the [`libretro-image-matching-server`](https://github.com/josegonzalez/libretro-image-matching-server) codebase for matching rom names to `Named_Snap` images, which will be cached to disk for later usage. Once the cache is populated, all the matched will be downloaded and moved into the correct folder for either MinUI or NextUI.
 
 Images are downloaded from the [Libretro Thumbnails Server](https://thumbnails.libretro.com/) and cached locally to an `Artwork` directory.
 
 Matching is currently performed on a remote server to increase the likelihood of an image download regardless of your game names, but will occasionally be incorrect. In such cases, you may delete the image manually in the correct `.media` (NextUI) or `.res` (MinUI) folder.
 
-Images are not currently resized, and thus may look incorrect on MinUI devices.
+Images are not currently resized, and thus may look incorrect on MinUI devices. Only snapshots are downloaded at this time.
 
 > [!WARNING]
 > Please note that it is currently not possible to exit out of the scraping process once it has started. You may need to power down your device to force-exit scraping.
