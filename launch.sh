@@ -22,6 +22,15 @@ export LD_LIBRARY_PATH="$PAK_DIR/lib/$architecture:$PAK_DIR/lib/$PLATFORM:$PAK_D
 export IMAGE_MATCHER_URL="https://matching-images-is.bittersweet.rip"
 export MINUI_IMAGE_WIDTH=300
 
+get_art_type() {
+    art_type=snap
+    if [ -f "$USERDATA_PATH/$PAK_NAME/art-type" ]; then
+        art_type=$(cat "$USERDATA_PATH/$PAK_NAME/art-type")
+    fi
+
+    echo "$art_type"
+}
+
 populate_emus_list() {
     ls -A "$SDCARD_PATH/Roms" | sort >/tmp/emus
 
@@ -212,7 +221,7 @@ main() {
             continue
         fi
 
-        art_type="snap"
+        art_type="$(get_art_type)"
         show_message "Fetching $art_type images for $selection" forever
         fetch_artwork "$selection" "$art_type"
     done
