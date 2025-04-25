@@ -27,7 +27,7 @@ Use the correct platform for your device.
 Browse to `Tools > Artwork Scraper` and press `A` to enter the Pak. A list of emulator folders with roms inside will be populated. Selecting a folder will hit a [remote server](https://matching-images-is.bittersweet.rip) running the [`libretro-image-matching-server`](https://github.com/josegonzalez/libretro-image-matching-server) codebase for matching rom names to `Named_Snap` images, which will be cached to disk for later usage. Once the cache is populated, all the matched will be downloaded and moved into the correct folder for either MinUI or NextUI.
 
 - Images are downloaded from the [Libretro Thumbnails Server](https://thumbnails.libretro.com/) and cached locally to an `Artwork` directory.
-- Only snapshots are downloaded at this time.
+- By default, `snap` (image screenshots) are the art type downloaded, but `title` and `boxart` can also be used.
 - Images are copied from the `Artwork` directory cache to the `.media` (NextUI) or `.res` (MinUI) folder.
 - Matching is currently performed on a remote server to increase the likelihood of an image download regardless of your game names, but will occasionally be incorrect. In such cases, you may delete the image manually in the correct `.media` (NextUI) or `.res` (MinUI) folder.
 - NextUI will scale images appropriately for the screen in software.
@@ -35,6 +35,12 @@ Browse to `Tools > Artwork Scraper` and press `A` to enter the Pak. A list of em
 
 > [!WARNING]
 > Please note that it is currently not possible to exit out of the scraping process once it has started. You may need to power down your device to force-exit scraping.
+
+### Configuration
+
+#### art-type
+
+By default, the Artwork Scraper pulls `snap` (image screenshot) art type, but also supports `title` (game title) and `boxart` (game box art) art types. To use a different art type, create a file named `art-type` in `.userdata/$PLATFORM/Artwork Scraper` with the desired art type as the contents of the file. This will be used on subsequent runs for artwork scraping.
 
 ### Debug Logging
 
