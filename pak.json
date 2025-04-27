@@ -1,13 +1,13 @@
 {
-    "name": "Artwork Scraper",
-    "type": "TOOL",
-    "description": "Scrapes artwork from the internet",
-    "author": "josegonzalez",
-    "repo_url": "https://github.com/josegonzalez/minui-artwork-scraper-pak",
-    "release_filename": "Artwork.Scraper.pak.zip",
-    "platforms": [
-        "tg5040"
-    ],
-    "launch": "launch.sh",
-    "version": "latest"
+  "name": "Artwork Scraper",
+  "type": "TOOL",
+  "description": "Scrapes artwork from the internet",
+  "author": "josegonzalez",
+  "repo_url": "https://github.com/josegonzalez/minui-artwork-scraper-pak",
+  "release_filename": "Artwork.Scraper.pak.zip",
+  "platforms": [
+    "tg5040"
+  ],
+  "launch": "launch.sh",
+  "version": "0.3.0"
 }
