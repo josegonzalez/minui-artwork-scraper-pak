@@ -1,9 +1,0 @@
-{
-    "label": "Artwork Scraper",
-    "launch": "launch.sh",
-    "description": "Scrapes artwork from the internet",
-    "pak_type": "tool",
-    "platforms": [
-        "tg5040"
-    ]
-}
