@@ -23,12 +23,38 @@ export IMAGE_MATCHER_URL="https://matching-images-is.bittersweet.rip"
 export MINUI_IMAGE_WIDTH=300
 
 get_art_type() {
-    art_type=snap
-    if [ -f "$USERDATA_PATH/$PAK_NAME/art-type" ]; then
-        art_type=$(cat "$USERDATA_PATH/$PAK_NAME/art-type")
+    ART_TYPE_FILE="$USERDATA_PATH/$PAK_NAME/art-type"
+
+    if [ ! -f "$ART_TYPE_FILE" ]; then
+        rm -f /tmp/arttype.list /tmp/arttype-output
+
+        echo "snap" > /tmp/arttype.list
+        echo "title" >> /tmp/arttype.list
+        echo "boxart" >> /tmp/arttype.list
+
+        minui-list \
+            --disable-auto-sleep \
+            --item-key "types" \
+            --file "/tmp/arttype.list" \
+            --format text \
+            --title "Artwork Type" \
+            --cancel-text "Default (snap)" \
+            --write-location /tmp/arttype-output \
+            --write-value state
+
+        if [ -f /tmp/arttype-output ]; then
+            selected_index="$(jq -r '.selected' /tmp/arttype-output)"
+            selected_type="$(jq -r ".types[$selected_index].name" /tmp/arttype-output)"
+        fi
+
+        if [ -z "$selected_type" ]; then
+            selected_type="snap"
+        fi
+
+        echo "$selected_type" > "$ART_TYPE_FILE"
     fi
 
-    echo "$art_type"
+    cat "$ART_TYPE_FILE"
 }
 
 populate_emus_list() {
@@ -41,6 +67,7 @@ populate_emus_list() {
         fi
     done </tmp/emus
     sed -i '/^[.]/d; /^APPS/d; /^PORTS/d' /tmp/emus.list
+    echo "Reset Artwork Type" >> /tmp/emus.list
 }
 
 main_screen() {
@@ -84,10 +111,7 @@ fetch_artwork() {
     rom_count="$(wc -l <"$rom_file")"
     show_message "Ensuring artwork is cached" forever
     while read -r line; do
-        # if the line is empty, skip it
-        if [ -z "$line" ]; then
-            continue
-        fi
+        [ -z "$line" ] && continue
 
         rom_name="$(echo "$line" | cut -f1)"
         artwork_url="$(echo "$line" | cut -f2)"
@@ -107,9 +131,7 @@ fetch_artwork() {
 
         download_count=$((download_count + 1))
         iteration=$((download_count % 10))
-        if [ "$iteration" -eq 0 ]; then
-            show_message "Downloaded $download_count/$total_count" forever
-        fi
+        [ "$iteration" -eq 0 ] && show_message "Downloaded $download_count/$total_count" forever
     done <"$artwork_file"
 
     sync
@@ -136,28 +158,21 @@ fetch_artwork() {
         else
             gm convert "$SDCARD_PATH/Artwork/$ROM_FOLDER/$ART_TYPE/$rom_name.png" -resize "$MINUI_IMAGE_WIDTH" "$base_directory/.$image_folder/$rom_name.png"
         fi
-
-        echo "$rom_name"
     done <"$artwork_file"
 
     sync
-
     show_message "Copied $download_count images for $rom_count roms" 4
 }
 
 get_emu_name() {
     EMU_FOLDER="$1"
-
     echo "$EMU_FOLDER" | sed 's/.*(\([^)]*\)).*/\1/'
 }
 
 show_message() {
     message="$1"
     seconds="$2"
-
-    if [ -z "$seconds" ]; then
-        seconds="forever"
-    fi
+    [ -z "$seconds" ] && seconds="forever"
 
     killall minui-presenter >/dev/null 2>&1 || true
     echo "$message" 1>&2
@@ -165,6 +180,16 @@ show_message() {
         minui-presenter --message "$message" --timeout -1 &
     else
         minui-presenter --message "$message" --timeout "$seconds"
+    fi
+}
+
+reset_art_type() {
+    ART_TYPE_FILE="$USERDATA_PATH/$PAK_NAME/art-type"
+    if [ -f "$ART_TYPE_FILE" ]; then
+        rm -f "$ART_TYPE_FILE"
+        show_message "Artwork type reset. Restart to select again." 3
+    else
+        show_message "No artwork type set." 3
     fi
 }
 
@@ -207,7 +232,6 @@ main() {
     while true; do
         main_screen
         exit_code=$?
-        # exit codes: 2 = back button, 3 = menu button
         if [ "$exit_code" -ne 0 ]; then
             break
         fi
@@ -215,6 +239,11 @@ main() {
         output="$(cat /tmp/minui-output)"
         selected_index="$(echo "$output" | jq -r '.selected')"
         selection="$(echo "$output" | jq -r ".folders[$selected_index].name")"
+
+        if [ "$selection" = "Reset Artwork Type" ]; then
+            reset_art_type
+            continue
+        fi
 
         if [ -z "$selection" ]; then
             show_message "No selection made" forever
