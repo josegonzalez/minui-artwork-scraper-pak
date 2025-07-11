@@ -79,6 +79,9 @@ fetch_artwork() {
         sync
     fi
 
+    # add a newline to the end of this for proper parsing
+    echo >> "$artwork_file"
+
     download_count=0
     total_count="$(wc -l <"$artwork_file")"
     rom_count="$(wc -l <"$rom_file")"
