@@ -42,8 +42,8 @@ populate_emus_list() {
     done </tmp/emus
     sed -i '/^[.]/d; /^APPS/d; /^PORTS/d' /tmp/emus.list
 
-    # Add Clear Cache option at the top
-    echo "Clear Cache" >/tmp/emus.list.tmp
+    # Add Cache Management option at the top
+    echo "Cache Management" >/tmp/emus.list.tmp
     cat /tmp/emus.list >>/tmp/emus.list.tmp
     mv /tmp/emus.list.tmp /tmp/emus.list
 }
@@ -382,7 +382,7 @@ Clear all cache
 EOF
 
     killall minui-presenter >/dev/null 2>&1 || true
-    minui-list --disable-auto-sleep --item-key "cache_options" --file "/tmp/cache_menu.list" --format text --cancel-text "BACK" --title "Clear Cache" --write-location /tmp/cache-output --write-value state
+    minui-list --disable-auto-sleep --item-key "cache_options" --file "/tmp/cache_menu.list" --format text --cancel-text "BACK" --title "Cache Management" --write-location /tmp/cache-output --write-value state
 
     exit_code=$?
     if [ "$exit_code" -ne 0 ]; then
@@ -472,8 +472,8 @@ main() {
             continue
         fi
 
-        # Handle Clear Cache selection
-        if [ "$selection" = "Clear Cache" ]; then
+        # Handle Cache Management selection
+        if [ "$selection" = "Cache Management" ]; then
             cache_menu
             # Refresh the emus list to ensure it's up to date
             rm -f /tmp/emus.list
