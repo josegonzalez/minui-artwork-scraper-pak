@@ -192,7 +192,7 @@ clear_all_cache() {
     show_message "Clearing all cache..." forever
     rm -rf "$SDCARD_PATH/Artwork/.cache"
     # Remove all cached images but keep the directory structure
-    find "$SDCARD_PATH/Artwork" -name "*.png" -type f -delete 2>/dev/null || true
+    find "$SDCARD_PATH/Artwork" -name "*.*" -type f -delete 2>/dev/null || true
     sync
     show_message "All cache cleared" 2
 }
