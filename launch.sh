@@ -80,7 +80,7 @@ fetch_artwork() {
     fi
 
     # add a newline to the end of this for proper parsing
-    echo >> "$artwork_file"
+    echo >>"$artwork_file"
 
     download_count=0
     total_count="$(wc -l <"$artwork_file")"
@@ -187,7 +187,7 @@ main() {
         export PLATFORM="tg5040"
     fi
 
-    allowed_platforms="tg5040"
+    allowed_platforms="my355 tg5040"
     if ! echo "$allowed_platforms" | grep -q "$PLATFORM"; then
         show_message "$PLATFORM is not a supported platform" 2
         return 1

@@ -6,6 +6,7 @@
   "repo_url": "https://github.com/josegonzalez/minui-artwork-scraper-pak",
   "release_filename": "Artwork.Scraper.pak.zip",
   "platforms": [
+    "my355",
     "tg5040"
   ],
   "launch": "launch.sh",
