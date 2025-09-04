@@ -359,7 +359,7 @@ clear_url_cache() {
 clear_image_cache() {
     show_message "Clearing image cache..." forever
     # Remove all cached images but keep the directory structure
-    find "$SDCARD_PATH/Artwork" -name "*.png" -type f -delete 2>/dev/null || true
+    find "$SDCARD_PATH/Artwork" -type f -name "*.png" -exec rm {} \; || true
     sync
     show_message "Image cache cleared" 2
 }
@@ -368,7 +368,7 @@ clear_all_cache() {
     show_message "Clearing all cache..." forever
     rm -rf "$SDCARD_PATH/Artwork/.cache"
     # Remove all cached images but keep the directory structure
-    find "$SDCARD_PATH/Artwork" -name "*.*" -type f -delete 2>/dev/null || true
+    find "$SDCARD_PATH/Artwork" -type f -exec rm {} \; || true
     sync
     show_message "All cache cleared" 2
 }
