@@ -41,10 +41,10 @@ populate_emus_list() {
         fi
     done </tmp/emus
     sed -i '/^[.]/d; /^APPS/d; /^PORTS/d' /tmp/emus.list
-    
+
     # Add Clear Cache option at the top
-    echo "Clear Cache" > /tmp/emus.list.tmp
-    cat /tmp/emus.list >> /tmp/emus.list.tmp
+    echo "Clear Cache" >/tmp/emus.list.tmp
+    cat /tmp/emus.list >>/tmp/emus.list.tmp
     mv /tmp/emus.list.tmp /tmp/emus.list
 }
 
@@ -64,44 +64,44 @@ main_screen() {
 
 action_menu() {
     ROM_FOLDER="$1"
-    
+
     rm -f /tmp/action.list /tmp/action-output
-    echo "Download Artwork" > /tmp/action.list
-    echo "Delete Artwork" >> /tmp/action.list
-    
+    echo "Download Artwork" >/tmp/action.list
+    echo "Delete Artwork" >>/tmp/action.list
+
     killall minui-presenter >/dev/null 2>&1 || true
     minui-list --disable-auto-sleep --item-key "actions" --file "/tmp/action.list" --format text --cancel-text "BACK" --title "$ROM_FOLDER" --write-location /tmp/action-output --write-value state
-    
+
     if [ $? -ne 0 ]; then
         return 1
     fi
-    
+
     output="$(cat /tmp/action-output)"
     selected_index="$(echo "$output" | jq -r '.selected')"
     selection="$(echo "$output" | jq -r ".actions[$selected_index].name")"
-    
+
     echo "$selection"
     return 0
 }
 
 delete_menu() {
     ROM_FOLDER="$1"
-    
+
     rm -f /tmp/delete.list /tmp/delete-output
-    echo "Delete All Images" > /tmp/delete.list
-    echo "Delete Individual Images" >> /tmp/delete.list
-    
+    echo "Delete All Images" >/tmp/delete.list
+    echo "Delete Individual Images" >>/tmp/delete.list
+
     killall minui-presenter >/dev/null 2>&1 || true
     minui-list --disable-auto-sleep --item-key "options" --file "/tmp/delete.list" --format text --cancel-text "BACK" --title "Delete $ROM_FOLDER Artwork" --write-location /tmp/delete-output --write-value state
-    
+
     if [ $? -ne 0 ]; then
         return 1
     fi
-    
+
     output="$(cat /tmp/delete-output)"
     selected_index="$(echo "$output" | jq -r '.selected')"
     selection="$(echo "$output" | jq -r ".options[$selected_index].name")"
-    
+
     echo "$selection"
     return 0
 }
@@ -179,8 +179,15 @@ fetch_artwork() {
 
     show_message "Copying $download_count images to '$ROM_FOLDER' .$image_folder folder" forever
     while read -r line; do
+        if [ -z "$line" ]; then
+            continue
+        fi
+
         rom_name="$(echo "$line" | cut -f1)"
         filename="${rom_name%.*}"
+        if [ -z "$rom_name" ] || [ -z "$filename" ]; then
+            continue
+        fi
 
         mkdir -p "$base_directory/.$image_folder/"
         if [ "$is_nextui" = "true" ]; then
@@ -222,22 +229,22 @@ show_message() {
 
 confirm_action() {
     message="$1"
-    
+
     rm -f /tmp/confirm.list /tmp/confirm-output
-    echo "Yes" > /tmp/confirm.list
-    echo "No" >> /tmp/confirm.list
-    
+    echo "Yes" >/tmp/confirm.list
+    echo "No" >>/tmp/confirm.list
+
     killall minui-presenter >/dev/null 2>&1 || true
     minui-list --disable-auto-sleep --item-key "choices" --file "/tmp/confirm.list" --format text --cancel-text "CANCEL" --title "$message" --write-location /tmp/confirm-output --write-value state
-    
+
     if [ $? -ne 0 ]; then
         return 1
     fi
-    
+
     output="$(cat /tmp/confirm-output)"
     selected_index="$(echo "$output" | jq -r '.selected')"
     selection="$(echo "$output" | jq -r ".choices[$selected_index].name")"
-    
+
     if [ "$selection" = "Yes" ]; then
         return 0
     else
@@ -247,27 +254,27 @@ confirm_action() {
 
 delete_all_images() {
     ROM_FOLDER="$1"
-    
+
     confirm_action "Delete all artwork for $ROM_FOLDER?"
     if [ $? -ne 0 ]; then
         show_message "Deletion cancelled" 2
         return 1
     fi
-    
+
     show_message "Deleting all images..." forever
-    
+
     # Delete from cache
     rm -rf "$SDCARD_PATH/Artwork/$ROM_FOLDER"
-    
+
     # Delete from rom folders (.res and .media)
     base_directory="$SDCARD_PATH/Roms/$ROM_FOLDER"
     rm -rf "$base_directory/.res"
     rm -rf "$base_directory/.media"
-    
+
     # Delete cache files
     rm -f "$SDCARD_PATH/Artwork/.cache/matches/$ROM_FOLDER.in.txt"
     rm -f "$SDCARD_PATH/Artwork/.cache/matches/$ROM_FOLDER."*.out.txt
-    
+
     sync
     show_message "All images deleted" 3
     return 0
@@ -276,40 +283,40 @@ delete_all_images() {
 select_images_to_delete() {
     ROM_FOLDER="$1"
     base_directory="$SDCARD_PATH/Roms/$ROM_FOLDER"
-    
+
     # Determine which folder to check
     image_folder=".res"
     if [ -d "$base_directory/.media" ]; then
         image_folder=".media"
     fi
-    
+
     if [ ! -d "$base_directory/$image_folder" ]; then
         show_message "No images found" 2
         return 1
     fi
-    
+
     # Create list of images
     rm -f /tmp/images.list /tmp/images-output
     ls -1 "$base_directory/$image_folder"/*.png 2>/dev/null | while read -r img; do
-        basename "$img" >> /tmp/images.list
+        basename "$img" >>/tmp/images.list
     done
-    
+
     if [ ! -s /tmp/images.list ]; then
         show_message "No images found" 2
         return 1
     fi
-    
+
     killall minui-presenter >/dev/null 2>&1 || true
     minui-list --disable-auto-sleep --item-key "images" --file "/tmp/images.list" --format text --cancel-text "BACK" --title "Select image to delete" --write-location /tmp/images-output --write-value state
-    
+
     if [ $? -ne 0 ]; then
         return 1
     fi
-    
+
     output="$(cat /tmp/images-output)"
     selected_index="$(echo "$output" | jq -r '.selected')"
     selection="$(echo "$output" | jq -r ".images[$selected_index].name")"
-    
+
     if [ -n "$selection" ]; then
         delete_single_image "$ROM_FOLDER" "$selection"
     fi
@@ -318,25 +325,25 @@ select_images_to_delete() {
 delete_single_image() {
     ROM_FOLDER="$1"
     IMAGE_NAME="$2"
-    
+
     confirm_action "Delete $IMAGE_NAME?"
     if [ $? -ne 0 ]; then
         show_message "Deletion cancelled" 2
         return 1
     fi
-    
+
     show_message "Deleting image..." forever
-    
+
     # Delete from cache (all art types)
     rm -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/snap/$IMAGE_NAME"
     rm -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/title/$IMAGE_NAME"
     rm -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/boxart/$IMAGE_NAME"
-    
+
     # Delete from rom folders
     base_directory="$SDCARD_PATH/Roms/$ROM_FOLDER"
     rm -f "$base_directory/.res/$IMAGE_NAME"
     rm -f "$base_directory/.media/$IMAGE_NAME"
-    
+
     sync
     show_message "Image deleted" 2
     return 0
@@ -368,7 +375,7 @@ clear_all_cache() {
 
 cache_menu() {
     # Create cache menu options
-    cat > /tmp/cache_menu.list <<EOF
+    cat >/tmp/cache_menu.list <<EOF
 Clear URL cache only
 Clear image cache only
 Clear all cache
@@ -376,29 +383,29 @@ EOF
 
     killall minui-presenter >/dev/null 2>&1 || true
     minui-list --disable-auto-sleep --item-key "cache_options" --file "/tmp/cache_menu.list" --format text --cancel-text "BACK" --title "Clear Cache" --write-location /tmp/cache-output --write-value state
-    
+
     exit_code=$?
     if [ "$exit_code" -ne 0 ]; then
         rm -f /tmp/cache_menu.list /tmp/cache-output
         return 1
     fi
-    
+
     output="$(cat /tmp/cache-output)"
     selected_index="$(echo "$output" | jq -r '.selected')"
     selection="$(echo "$output" | jq -r ".cache_options[$selected_index].name")"
-    
+
     rm -f /tmp/cache_menu.list /tmp/cache-output
-    
+
     case "$selection" in
-        "Clear URL cache only")
-            clear_url_cache
-            ;;
-        "Clear image cache only")
-            clear_image_cache
-            ;;
-        "Clear all cache")
-            clear_all_cache
-            ;;
+    "Clear URL cache only")
+        clear_url_cache
+        ;;
+    "Clear image cache only")
+        clear_image_cache
+        ;;
+    "Clear all cache")
+        clear_all_cache
+        ;;
     esac
     return 0
 }
@@ -464,7 +471,7 @@ main() {
             show_message "No selection made" forever
             continue
         fi
-        
+
         # Handle Clear Cache selection
         if [ "$selection" = "Clear Cache" ]; then
             cache_menu
@@ -478,7 +485,7 @@ main() {
         if [ $? -ne 0 ]; then
             continue
         fi
-        
+
         if [ "$action" = "Download Artwork" ]; then
             art_type="$(get_art_type)"
             show_message "Fetching $art_type images for $selection" forever
