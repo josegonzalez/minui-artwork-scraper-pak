@@ -25,7 +25,7 @@ Use the correct platform for your device.
 > [!IMPORTANT]
 > If the zip file was not extracted correctly, the pak may show up under `Tools > Artwork`. Rename the folder to `Artwork Scraper.pak` to fix this.
 
-Browse to `Tools > Artwork Scraper` and press `A` to enter the Pak. A list of emulator folders with roms inside will be populated. Selecting a folder will hit a [remote server](https://matching-images-is.bittersweet.rip) running the [`libretro-image-matching-server`](https://github.com/josegonzalez/libretro-image-matching-server) codebase for matching rom names to `Named_Snap` images, which will be cached to disk for later usage. Once the cache is populated, all the matched will be downloaded and moved into the correct folder for either MinUI or NextUI.
+Browse to `Tools > Artwork Scraper` and press `A` to enter the Pak. A list of emulator folders with roms inside will be populated, with a "Clear Cache" option at the top. Selecting a folder will hit a [remote server](https://matching-images-is.bittersweet.rip) running the [`libretro-image-matching-server`](https://github.com/josegonzalez/libretro-image-matching-server) codebase for matching rom names to `Named_Snap` images, which will be cached to disk for later usage. Once the cache is populated, all the matched will be downloaded and moved into the correct folder for either MinUI or NextUI.
 
 - Images are downloaded from the [Libretro Thumbnails Server](https://thumbnails.libretro.com/) and cached locally to an `Artwork` directory.
 - By default, `snap` (image screenshots) are the art type downloaded, but `title` and `boxart` can also be used.
@@ -36,6 +36,14 @@ Browse to `Tools > Artwork Scraper` and press `A` to enter the Pak. A list of em
 
 > [!WARNING]
 > Please note that it is currently not possible to exit out of the scraping process once it has started. You may need to power down your device to force-exit scraping.
+
+### Clear Cache
+
+The "Clear Cache" option appears at the top of the emulator list and allows you to manage the cached data:
+
+- **Clear URL cache only**: Removes the cached mappings between ROM names and artwork URLs. This forces the scraper to re-query the remote server for matches.
+- **Clear image cache only**: Removes all downloaded artwork images while preserving the URL mappings. This is useful if you want to re-download images without re-matching.
+- **Clear all cache**: Removes both URL mappings and downloaded images, giving you a fresh start.
 
 ### Configuration
 
