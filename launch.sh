@@ -22,15 +22,6 @@ export LD_LIBRARY_PATH="$PAK_DIR/lib/$architecture:$PAK_DIR/lib/$PLATFORM:$PAK_D
 export IMAGE_MATCHER_URL="https://matching-images-is.bittersweet.rip"
 export MINUI_IMAGE_WIDTH=300
 
-get_art_type() {
-    art_type=snap
-    if [ -f "$USERDATA_PATH/$PAK_NAME/art-type" ]; then
-        art_type=$(cat "$USERDATA_PATH/$PAK_NAME/art-type")
-    fi
-
-    echo "$art_type"
-}
-
 populate_emus_list() {
     ls -A "$SDCARD_PATH/Roms" | sort >/tmp/emus
 
@@ -66,7 +57,9 @@ action_menu() {
     ROM_FOLDER="$1"
 
     rm -f /tmp/action.list /tmp/action-output
-    echo "Download Artwork" >/tmp/action.list
+    echo "Download Boxart as Artwork" >>/tmp/action.list
+    echo "Download Title as Artwork" >>/tmp/action.list
+    echo "Download Screenshot as Artwork" >>/tmp/action.list
     echo "Delete Artwork" >>/tmp/action.list
 
     killall minui-presenter >/dev/null 2>&1 || true
@@ -486,10 +479,15 @@ main() {
             continue
         fi
 
-        if [ "$action" = "Download Artwork" ]; then
-            art_type="$(get_art_type)"
-            show_message "Fetching $art_type images for $selection" forever
-            fetch_artwork "$selection" "$art_type"
+        if [ "$action" = "Download Boxart as Artwork" ]; then
+            show_message "Fetching boxart images for $selection" forever
+            fetch_artwork "$selection" "boxart"
+        elif [ "$action" = "Download Title as Artwork" ]; then
+            show_message "Fetching title images for $selection" forever
+            fetch_artwork "$selection" "title"
+        elif [ "$action" = "Download Screenshot as Artwork" ]; then
+            show_message "Fetching screenshot images for $selection" forever
+            fetch_artwork "$selection" "snap"
         elif [ "$action" = "Delete Artwork" ]; then
             delete_option=$(delete_menu "$selection")
             if [ $? -eq 0 ]; then
