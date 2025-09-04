@@ -62,6 +62,50 @@ main_screen() {
     minui-list --disable-auto-sleep --item-key "folders" --file "/tmp/emus.list" --format text --cancel-text "EXIT" --title "Artwork Scraper" --write-location /tmp/minui-output --write-value state
 }
 
+action_menu() {
+    ROM_FOLDER="$1"
+    
+    rm -f /tmp/action.list /tmp/action-output
+    echo "Download Artwork" > /tmp/action.list
+    echo "Delete Artwork" >> /tmp/action.list
+    
+    killall minui-presenter >/dev/null 2>&1 || true
+    minui-list --disable-auto-sleep --item-key "actions" --file "/tmp/action.list" --format text --cancel-text "BACK" --title "$ROM_FOLDER" --write-location /tmp/action-output --write-value state
+    
+    if [ $? -ne 0 ]; then
+        return 1
+    fi
+    
+    output="$(cat /tmp/action-output)"
+    selected_index="$(echo "$output" | jq -r '.selected')"
+    selection="$(echo "$output" | jq -r ".actions[$selected_index].name")"
+    
+    echo "$selection"
+    return 0
+}
+
+delete_menu() {
+    ROM_FOLDER="$1"
+    
+    rm -f /tmp/delete.list /tmp/delete-output
+    echo "Delete All Images" > /tmp/delete.list
+    echo "Delete Individual Images" >> /tmp/delete.list
+    
+    killall minui-presenter >/dev/null 2>&1 || true
+    minui-list --disable-auto-sleep --item-key "options" --file "/tmp/delete.list" --format text --cancel-text "BACK" --title "Delete $ROM_FOLDER Artwork" --write-location /tmp/delete-output --write-value state
+    
+    if [ $? -ne 0 ]; then
+        return 1
+    fi
+    
+    output="$(cat /tmp/delete-output)"
+    selected_index="$(echo "$output" | jq -r '.selected')"
+    selection="$(echo "$output" | jq -r ".options[$selected_index].name")"
+    
+    echo "$selection"
+    return 0
+}
+
 fetch_artwork() {
     ROM_FOLDER="$1" ART_TYPE="${2:-snap}" REFRESH_CACHE="${3:-false}"
     rom_file="$SDCARD_PATH/Artwork/.cache/matches/$ROM_FOLDER.in.txt"
@@ -176,6 +220,128 @@ show_message() {
     fi
 }
 
+confirm_action() {
+    message="$1"
+    
+    rm -f /tmp/confirm.list /tmp/confirm-output
+    echo "Yes" > /tmp/confirm.list
+    echo "No" >> /tmp/confirm.list
+    
+    killall minui-presenter >/dev/null 2>&1 || true
+    minui-list --disable-auto-sleep --item-key "choices" --file "/tmp/confirm.list" --format text --cancel-text "CANCEL" --title "$message" --write-location /tmp/confirm-output --write-value state
+    
+    if [ $? -ne 0 ]; then
+        return 1
+    fi
+    
+    output="$(cat /tmp/confirm-output)"
+    selected_index="$(echo "$output" | jq -r '.selected')"
+    selection="$(echo "$output" | jq -r ".choices[$selected_index].name")"
+    
+    if [ "$selection" = "Yes" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+delete_all_images() {
+    ROM_FOLDER="$1"
+    
+    confirm_action "Delete all artwork for $ROM_FOLDER?"
+    if [ $? -ne 0 ]; then
+        show_message "Deletion cancelled" 2
+        return 1
+    fi
+    
+    show_message "Deleting all images..." forever
+    
+    # Delete from cache
+    rm -rf "$SDCARD_PATH/Artwork/$ROM_FOLDER"
+    
+    # Delete from rom folders (.res and .media)
+    base_directory="$SDCARD_PATH/Roms/$ROM_FOLDER"
+    rm -rf "$base_directory/.res"
+    rm -rf "$base_directory/.media"
+    
+    # Delete cache files
+    rm -f "$SDCARD_PATH/Artwork/.cache/matches/$ROM_FOLDER.in.txt"
+    rm -f "$SDCARD_PATH/Artwork/.cache/matches/$ROM_FOLDER."*.out.txt
+    
+    sync
+    show_message "All images deleted" 3
+    return 0
+}
+
+select_images_to_delete() {
+    ROM_FOLDER="$1"
+    base_directory="$SDCARD_PATH/Roms/$ROM_FOLDER"
+    
+    # Determine which folder to check
+    image_folder=".res"
+    if [ -d "$base_directory/.media" ]; then
+        image_folder=".media"
+    fi
+    
+    if [ ! -d "$base_directory/$image_folder" ]; then
+        show_message "No images found" 2
+        return 1
+    fi
+    
+    # Create list of images
+    rm -f /tmp/images.list /tmp/images-output
+    ls -1 "$base_directory/$image_folder"/*.png 2>/dev/null | while read -r img; do
+        basename "$img" >> /tmp/images.list
+    done
+    
+    if [ ! -s /tmp/images.list ]; then
+        show_message "No images found" 2
+        return 1
+    fi
+    
+    killall minui-presenter >/dev/null 2>&1 || true
+    minui-list --disable-auto-sleep --item-key "images" --file "/tmp/images.list" --format text --cancel-text "BACK" --title "Select image to delete" --write-location /tmp/images-output --write-value state
+    
+    if [ $? -ne 0 ]; then
+        return 1
+    fi
+    
+    output="$(cat /tmp/images-output)"
+    selected_index="$(echo "$output" | jq -r '.selected')"
+    selection="$(echo "$output" | jq -r ".images[$selected_index].name")"
+    
+    if [ -n "$selection" ]; then
+        delete_single_image "$ROM_FOLDER" "$selection"
+    fi
+}
+
+delete_single_image() {
+    ROM_FOLDER="$1"
+    IMAGE_NAME="$2"
+    
+    confirm_action "Delete $IMAGE_NAME?"
+    if [ $? -ne 0 ]; then
+        show_message "Deletion cancelled" 2
+        return 1
+    fi
+    
+    show_message "Deleting image..." forever
+    
+    # Delete from cache (all art types)
+    rm -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/snap/$IMAGE_NAME"
+    rm -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/title/$IMAGE_NAME"
+    rm -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/boxart/$IMAGE_NAME"
+    
+    # Delete from rom folders
+    base_directory="$SDCARD_PATH/Roms/$ROM_FOLDER"
+    rm -f "$base_directory/.res/$IMAGE_NAME"
+    rm -f "$base_directory/.media/$IMAGE_NAME"
+    
+    sync
+    show_message "Image deleted" 2
+    return 0
+}
+
 clear_url_cache() {
     show_message "Clearing URL cache..." forever
     rm -rf "$SDCARD_PATH/Artwork/.cache/matches"
@@ -234,14 +400,22 @@ EOF
             clear_all_cache
             ;;
     esac
-    
     return 0
 }
 
 cleanup() {
     rm -f /tmp/stay_awake
     rm -f /tmp/emus
+    rm -f /tmp/emus.list
     rm -f /tmp/minui-output
+    rm -f /tmp/action.list
+    rm -f /tmp/action-output
+    rm -f /tmp/delete.list
+    rm -f /tmp/delete-output
+    rm -f /tmp/confirm.list
+    rm -f /tmp/confirm-output
+    rm -f /tmp/images.list
+    rm -f /tmp/images-output
     killall minui-presenter >/dev/null 2>&1 || true
 }
 
@@ -299,9 +473,26 @@ main() {
             continue
         fi
 
-        art_type="$(get_art_type)"
-        show_message "Fetching $art_type images for $selection" forever
-        fetch_artwork "$selection" "$art_type"
+        # Show action menu
+        action=$(action_menu "$selection")
+        if [ $? -ne 0 ]; then
+            continue
+        fi
+        
+        if [ "$action" = "Download Artwork" ]; then
+            art_type="$(get_art_type)"
+            show_message "Fetching $art_type images for $selection" forever
+            fetch_artwork "$selection" "$art_type"
+        elif [ "$action" = "Delete Artwork" ]; then
+            delete_option=$(delete_menu "$selection")
+            if [ $? -eq 0 ]; then
+                if [ "$delete_option" = "Delete All Images" ]; then
+                    delete_all_images "$selection"
+                elif [ "$delete_option" = "Delete Individual Images" ]; then
+                    select_images_to_delete "$selection"
+                fi
+            fi
+        fi
     done
 }
 
