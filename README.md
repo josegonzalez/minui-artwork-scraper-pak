@@ -25,7 +25,7 @@ Use the correct platform for your device.
 > [!IMPORTANT]
 > If the zip file was not extracted correctly, the pak may show up under `Tools > Artwork`. Rename the folder to `Artwork Scraper.pak` to fix this.
 
-Browse to `Tools > Artwork Scraper` and press `A` to enter the Pak. A list of emulator folders with roms inside will be populated, with a "Cache Management" option at the top. Selecting a folder will hit a [remote server](https://matching-images-is.bittersweet.rip) running the [`libretro-image-matching-server`](https://github.com/josegonzalez/libretro-image-matching-server) codebase for matching rom names to `Named_Snap` images, which will be cached to disk for later usage. Once the cache is populated, all the matched will be downloaded and moved into the correct folder for either MinUI or NextUI.
+Browse to `Tools > Artwork Scraper` and press `A` to enter the Pak. A list of emulator folders with roms inside will be populated, with a "Cache Management" option at the top. Selecting an emulator and choosing an option to download artwork will hit a [remote server](https://matching-images-is.bittersweet.rip) running the [`libretro-image-matching-server`](https://github.com/josegonzalez/libretro-image-matching-server) codebase for matching rom names to images, which will be cached to disk for later usage. Once the cache is populated, all the matched will be downloaded and moved into the correct folder for either MinUI or NextUI.
 
 - Images are downloaded from the [Libretro Thumbnails Server](https://thumbnails.libretro.com/) and cached locally to an `Artwork` directory.
 - By default, `snap` (image screenshots) are the art type downloaded, but `title` and `boxart` can also be used.
@@ -44,12 +44,6 @@ The "Cache Management" option appears at the top of the emulator list and allows
 - **Clear URL cache only**: Removes the cached mappings between ROM names and artwork URLs. This forces the scraper to re-query the remote server for matches.
 - **Clear image cache only**: Removes all downloaded artwork images while preserving the URL mappings. This is useful if you want to re-download images without re-matching.
 - **Clear all cache**: Removes both URL mappings and downloaded images, giving you a fresh start.
-
-### Configuration
-
-#### art-type
-
-By default, the Artwork Scraper pulls `snap` (image screenshot) art type, but also supports `title` (game title) and `boxart` (game box art) art types. To use a different art type, create a file named `art-type` in `.userdata/$PLATFORM/Artwork Scraper` with the desired art type as the contents of the file. This will be used on subsequent runs for artwork scraping.
 
 ### Debug Logging
 
