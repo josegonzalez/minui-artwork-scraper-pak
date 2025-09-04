@@ -6,6 +6,7 @@ A MinUI app that scrapes artwork from the [Libretro Thumbnails Server](https://t
 
 This pak is designed and tested on the following MinUI Platforms and devices:
 
+- `my355`: Miyoo Flip
 - `tg5040`: Trimui Brick (formerly `tg3040`), Trimui Smart Pro
 
 Use the correct platform for your device.
