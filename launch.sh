@@ -41,6 +41,11 @@ populate_emus_list() {
         fi
     done </tmp/emus
     sed -i '/^[.]/d; /^APPS/d; /^PORTS/d' /tmp/emus.list
+    
+    # Add Clear Cache option at the top
+    echo "Clear Cache" > /tmp/emus.list.tmp
+    cat /tmp/emus.list >> /tmp/emus.list.tmp
+    mv /tmp/emus.list.tmp /tmp/emus.list
 }
 
 main_screen() {
@@ -122,6 +127,9 @@ fetch_artwork() {
 
         sync
     fi
+
+    # add a newline to the end of this for proper parsing
+    echo >>"$artwork_file"
 
     download_count=0
     total_count="$(wc -l <"$artwork_file")"
@@ -334,6 +342,67 @@ delete_single_image() {
     return 0
 }
 
+clear_url_cache() {
+    show_message "Clearing URL cache..." forever
+    rm -rf "$SDCARD_PATH/Artwork/.cache/matches"
+    sync
+    show_message "URL cache cleared" 2
+}
+
+clear_image_cache() {
+    show_message "Clearing image cache..." forever
+    # Remove all cached images but keep the directory structure
+    find "$SDCARD_PATH/Artwork" -name "*.png" -type f -delete 2>/dev/null || true
+    sync
+    show_message "Image cache cleared" 2
+}
+
+clear_all_cache() {
+    show_message "Clearing all cache..." forever
+    rm -rf "$SDCARD_PATH/Artwork/.cache"
+    # Remove all cached images but keep the directory structure
+    find "$SDCARD_PATH/Artwork" -name "*.*" -type f -delete 2>/dev/null || true
+    sync
+    show_message "All cache cleared" 2
+}
+
+cache_menu() {
+    # Create cache menu options
+    cat > /tmp/cache_menu.list <<EOF
+Clear URL cache only
+Clear image cache only
+Clear all cache
+EOF
+
+    killall minui-presenter >/dev/null 2>&1 || true
+    minui-list --disable-auto-sleep --item-key "cache_options" --file "/tmp/cache_menu.list" --format text --cancel-text "BACK" --title "Clear Cache" --write-location /tmp/cache-output --write-value state
+    
+    exit_code=$?
+    if [ "$exit_code" -ne 0 ]; then
+        rm -f /tmp/cache_menu.list /tmp/cache-output
+        return 1
+    fi
+    
+    output="$(cat /tmp/cache-output)"
+    selected_index="$(echo "$output" | jq -r '.selected')"
+    selection="$(echo "$output" | jq -r ".cache_options[$selected_index].name")"
+    
+    rm -f /tmp/cache_menu.list /tmp/cache-output
+    
+    case "$selection" in
+        "Clear URL cache only")
+            clear_url_cache
+            ;;
+        "Clear image cache only")
+            clear_image_cache
+            ;;
+        "Clear all cache")
+            clear_all_cache
+            ;;
+    esac
+    return 0
+}
+
 cleanup() {
     rm -f /tmp/stay_awake
     rm -f /tmp/emus
@@ -359,7 +428,7 @@ main() {
         export PLATFORM="tg5040"
     fi
 
-    allowed_platforms="tg5040"
+    allowed_platforms="my355 tg5040"
     if ! echo "$allowed_platforms" | grep -q "$PLATFORM"; then
         show_message "$PLATFORM is not a supported platform" 2
         return 1
@@ -393,6 +462,14 @@ main() {
 
         if [ -z "$selection" ]; then
             show_message "No selection made" forever
+            continue
+        fi
+        
+        # Handle Clear Cache selection
+        if [ "$selection" = "Clear Cache" ]; then
+            cache_menu
+            # Refresh the emus list to ensure it's up to date
+            rm -f /tmp/emus.list
             continue
         fi
 
