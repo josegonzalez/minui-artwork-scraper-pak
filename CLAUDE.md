@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-MinUI Artwork Scraper is a shell script-based application packaged as a MinUI `.pak` for handheld gaming devices. It automatically downloads game artwork from the Libretro Thumbnails Server based on ROM names.
+MinUI Artwork Scraper is a shell script-based application packaged as a MinUI `.pak` for handheld gaming devices. It automatically downloads game artwork from ScreenScraper API based on ROM names.
 
 ## Key Commands
 
@@ -44,15 +44,17 @@ To test locally, you need:
    - Sets up environment variables and paths
    - Manages UI through `minui-list` and `minui-presenter`
    - Handles artwork fetching and caching
-   - API calls to matching server (`https://matching-images-is.bittersweet.rip`)
-   - Image downloading from Libretro Thumbnails Server
+   - API calls to ScreenScraper API (`https://api.screenscraper.fr/api2/`)
+   - System mapping using `systemesListe.php`
+   - Game searching using `jeuRecherche.php`
+   - Image downloading using `jeuInfos.php` and `mediaJeu.php`
    - Image processing and placement in `.res` (MinUI) or `.media` (NextUI) folders
 
 2. **Remote Service Integration**
-   - Uses `https://matching-images-is.bittersweet.rip` for fuzzy ROM name matching
-   - Service endpoint: `POST /matches/{emu_name}/{art_type}`
-   - Input: List of ROM filenames
-   - Output: Tab-delimited file with ROM name to artwork URL mappings
+   - Uses ScreenScraper API (`https://api.screenscraper.fr/api2/`) for game search and artwork download
+   - Service endpoints: `systemesListe.php`, `jeuRecherche.php`, `jeuInfos.php`, `mediaJeu.php`
+   - Input: ROM filenames and system names
+   - Output: Direct artwork downloads with intelligent caching
 
 3. **Caching Strategy**
    - Match cache: `$SDCARD_PATH/Artwork/.cache/matches/`
@@ -66,8 +68,8 @@ To test locally, you need:
 
 ### External Dependencies
 
-- **Matching Server API**: `https://matching-images-is.bittersweet.rip/match` - Returns artwork URLs for ROM names
-- **Image Source**: Libretro Thumbnails Server - Hosts the actual artwork files
+- **ScreenScraper API**: `https://api.screenscraper.fr/api2/` - Game database and artwork provider
+- **Configuration**: `screenscraper.conf` - API credentials and settings
 - **Platform Tools**: `minui-list`, `minui-presenter`, `gm` (GraphicsMagick) - UI and image processing
 
 ### Key Environment Variables
@@ -101,14 +103,27 @@ External binaries downloaded during build:
 ### Image Processing Flow
 
 1. User selects emulator via `minui-list`
-2. Script reads ROMs from emulator directory
-3. Calls matching API with ROM names
-4. Downloads images to local cache (`.cache/minui_artwork_scraper/`)
-5. Copies/scales images to appropriate folders:
+2. Script loads ScreenScraper configuration from `screenscraper.conf`
+3. Finds system ID using `systemesListe.php` (with caching)
+4. Reads ROMs from emulator directory
+5. Searches for each game using `jeuRecherche.php`
+6. Downloads artwork using `jeuInfos.php` with appropriate media type
+7. Copies/scales images to appropriate folders:
    - MinUI: `.res/` folders with 300px width scaling
    - NextUI: `.media/` folders without scaling
 
 ### Configuration
+
+- **ScreenScraper API**: `screenscraper.conf` in package root (required)
+  - `devid`: Developer ID (required)
+  - `devpassword`: Developer password (required)
+  - `softname`: Application name (optional, default: "MinUI Artwork Scraper")
+  - `ssid`: ScreenScraper username (optional)
+  - `sspassword`: ScreenScraper password (optional)
+  - `output_format`: API response format (json/xml, default: json)
+  - `max_retries`: Maximum retry attempts (default: 3)
+  - `retry_delay`: Initial retry delay in seconds (default: 2)
+  - `artwork_types`: Custom artwork type mappings
 
 - Art type selection stored in `.userdata/$PLATFORM/.minui_artwork_scraper/.arttype`
 - Options: snap (default), title, boxart
@@ -128,3 +143,48 @@ External binaries downloaded during build:
 2. Creates `dist/Artwork Scraper.pak.zip` containing all necessary files
 3. Version is automatically bumped if `RELEASE_VERSION` is provided
 4. GitHub Actions handles attestation and artifact upload
+## Recent Changes - ScreenScraper API improvements
+
+This project received targeted updates to reduce API calls, improve robustness, and provide clearer runtime feedback when using the ScreenScraper API. Key changes (implemented in [`launch.sh`](launch.sh:1)):
+
+- Single jeuInfos per ROM and persistent cache
+  - The script now makes exactly one call to jeuInfos.php per ROM and persists the full JSON response to:
+    - $SDCARD_PATH/Artwork/.cache/jeuInfos/{ROM_BASE}.json
+  - Cached responses are reused on subsequent runs unless REFRESH_CACHE=true.
+
+- Parse medias from cached jeuInfos JSON
+  - All artwork type lookups (snap, title, boxart) are done by scanning the saved jeuInfos JSON and selecting medias by .type rather than making separate media API calls.
+  - For each artwork type the code iterates candidate entries in the JSON and attempts downloads in order of the configured fallback list.
+
+- Multiple URL handling and sanitization
+  - jq results that return multiple URLs are handled as newline-separated candidates; each candidate is tried independently.
+  - Each URL is sanitized (trim CR/LF and whitespace) and validated (basic https?:// pattern) before curl is invoked to avoid Illegal characters errors.
+
+- Atomic save and JSON validation
+  - Responses are validated with jq before saving.
+  - Cache files are written atomically via a temporary file and mv to avoid corrupt cache states.
+
+- Improved progress and persistent on-screen messages
+  - The UI now shows clear progress messages at key points:
+    - Per-ROM: processing, using cached info, or fetching info
+    - Per-media attempt: trying a specific media type and download success/failure
+    - Periodic processed summary (eg processed N/M ROMs)
+  - Messages are displayed until the next message (using the presenter's forever mode) so the user sees current status without rapid flicker.
+
+- Error handling and logging
+  - Malformed JSON, failed downloads, and network/API errors are surfaced via existing show_message flow and written to the log file for debugging.
+  - Existing retry/backoff behavior for API calls was preserved.
+
+- Implementation notes
+  - Changes are concentrated in the fetch flow inside [`launch.sh`](launch.sh:1) (fetch_artwork and related helpers).
+  - New cache directory creation: $SDCARD_PATH/Artwork/.cache/jeuInfos
+  - The previous behavior that avoids downloading existing images unless REFRESH_CACHE=true was preserved.
+
+- Testing and next steps
+  - Manual integration tests are recommended:
+    - Run the scraper on a small ROM folder, confirm cache files appear under $SDCARD_PATH/Artwork/.cache/jeuInfos
+    - Re-run to confirm cached responses are used and fewer API calls are made
+    - Verify image files land under $SDCARD_PATH/Artwork/{ROM_FOLDER}/{ART_TYPE}/ and are copied/resized into .res or .media correctly
+  - Additional tasks: update API docs, run shellcheck, and create a release commit / PR.
+
+For implementation details, review the updated fetch logic in [`launch.sh`](launch.sh:1) and the artwork cache location listed above.

@@ -48,3 +48,70 @@ The "Cache Management" option appears at the top of the emulator list and allows
 ### Debug Logging
 
 Debug logs will be written to the `$SDCARD_PATH/.userdata/$PLATFORM/logs/` folder.
+
+### System Mapping Configuration
+
+The artwork scraper now includes a local system mapping configuration file (`system_mapping.conf`) that provides fallback system IDs when the ScreenScraper API is unavailable. This ensures the scraper continues to work even with network connectivity issues.
+
+#### File Format
+
+The `system_mapping.conf` file uses a simple key-value format:
+
+```ini
+# ScreenScraper System ID Mappings
+# Format: SYSTEM_NAME=SYSTEM_ID
+# These mappings provide local fallback when API is unavailable
+
+# Nintendo Systems
+GBC=10
+GB=11
+GBA=12
+N64=43
+NES=6
+SNES=7
+
+# Sony Systems
+PS=1
+PSP=16
+
+# Sega Systems
+MD=18
+SMS=17
+GG=15
+```
+
+#### Adding New Systems
+
+To add a new system mapping:
+
+1. Find the system ID from the ScreenScraper API:
+   - Visit https://api.screenscraper.fr/api2/systemesListe.php
+   - Use your developer credentials to get the full system list
+   - Find your system in the response and note its ID
+
+2. Add the mapping to `system_mapping.conf`:
+   ```ini
+   YOUR_SYSTEM_NAME=SystemID
+   ```
+
+3. The system name should match the folder name pattern extracted by `get_emu_name()` (the text inside parentheses).
+
+#### Fallback Mechanism
+
+The system ID resolution follows this priority:
+
+1. **Local Mapping**: Check `system_mapping.conf` first (fastest, no network required)
+2. **Cache**: Check previously cached API responses
+3. **API**: Query ScreenScraper API as last resort
+4. **Error**: Show user-friendly message if all methods fail
+
+This approach ensures reliability while maintaining performance for common systems.
+
+#### Troubleshooting
+
+If you encounter system ID resolution issues:
+
+1. Check if your system is listed in `system_mapping.conf`
+2. Verify the folder name format matches the expected pattern
+3. Test connectivity to the ScreenScraper API
+4. Check the debug logs for detailed error messages
