@@ -19,7 +19,6 @@ fi
 
 export PATH="$PAK_DIR/bin/$architecture:$PAK_DIR/bin/$PLATFORM:$PAK_DIR/bin:$PATH"
 export LD_LIBRARY_PATH="$PAK_DIR/lib/$architecture:$PAK_DIR/lib/$PLATFORM:$PAK_DIR/lib:$LD_LIBRARY_PATH"
-export IMAGE_MATCHER_URL="https://matching-images-is.bittersweet.rip"
 export MINUI_IMAGE_WIDTH=300
 
 populate_emus_list() {
@@ -110,10 +109,8 @@ fetch_artwork() {
     if [ "$REFRESH_CACHE" = "true" ] || [ ! -f "$artwork_file" ] || [ ! -s "$artwork_file" ]; then
         ls -A "$SDCARD_PATH/Roms/$ROM_FOLDER" >"$rom_file"
 
-        curl -fksSL -X POST -H "Content-Type: text/plain" \
-            --data-binary "@$rom_file" \
-            -o "$artwork_file" \
-            "$IMAGE_MATCHER_URL/matches/$emu_name/$ART_TYPE"
+        # Use local matcher binary instead of remote server
+        "$PAK_DIR/bin/$PLATFORM/matcher" -console "$emu_name" -type "$ART_TYPE" <"$rom_file" >"$artwork_file"
         if [ $? -ne 0 ]; then
             return 1
         fi
