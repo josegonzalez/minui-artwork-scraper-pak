@@ -19,8 +19,32 @@ fi
 
 export PATH="$PAK_DIR/bin/$architecture:$PAK_DIR/bin/$PLATFORM:$PAK_DIR/bin:$PATH"
 export LD_LIBRARY_PATH="$PAK_DIR/lib/$architecture:$PAK_DIR/lib/$PLATFORM:$PAK_DIR/lib:$LD_LIBRARY_PATH"
-export IMAGE_MATCHER_URL="https://api.screenscraper.fr/api2"
+export IMAGE_MATCHER_URL="https://matching-images-is.bittersweet.rip"
+export SCREENSCRAPER_API_URL="https://api.screenscraper.fr/api2"
 export MINUI_IMAGE_WIDTH=300
+
+# App Settings Management
+SETTINGS_FILE="$USERDATA_PATH/$PAK_NAME/settings.json"
+
+load_settings() {
+    if [ -f "$SETTINGS_FILE" ]; then
+        export ARTWORK_PROVIDER=$(jq -r '.provider // "bittersweet"' "$SETTINGS_FILE")
+    else
+        export ARTWORK_PROVIDER="bittersweet"
+        # Create default settings file
+        mkdir -p "$(dirname "$SETTINGS_FILE")"
+        echo '{"provider": "bittersweet"}' > "$SETTINGS_FILE"
+    fi
+}
+
+save_settings() {
+    local provider="$1"
+    mkdir -p "$(dirname "$SETTINGS_FILE")"
+    jq -n --arg p "$provider" '{"provider": $p}' > "$SETTINGS_FILE"
+    export ARTWORK_PROVIDER="$provider"
+}
+
+load_settings
 
 # ScreenScraper configuration
 SCREENSCRAPER_CONF="$PAK_DIR/screenscraper.conf"
@@ -64,7 +88,7 @@ build_screenscraper_url() {
     local encoded_softname
     encoded_softname=$(echo "$SCREENSCRAPER_SOFTNAME" | sed 's/ /%20/g')
     
-    local base_url="$IMAGE_MATCHER_URL/$endpoint?devid=$SCREENSCRAPER_DEVID&devpassword=$SCREENSCRAPER_DEVPASSWORD&softname=$encoded_softname&output=$SCREENSCRAPER_OUTPUT"
+    local base_url="$SCREENSCRAPER_API_URL/$endpoint?devid=$SCREENSCRAPER_DEVID&devpassword=$SCREENSCRAPER_DEVPASSWORD&softname=$encoded_softname&output=$SCREENSCRAPER_OUTPUT"
     
     if [ -n "$SCREENSCRAPER_SSID" ]; then
         base_url="$base_url&ssid=$SCREENSCRAPER_SSID"
@@ -175,8 +199,9 @@ populate_emus_list() {
     done </tmp/emus
     sed -i '/^[.]/d; /^APPS/d; /^PORTS/d' /tmp/emus.list
 
-    # Add Cache Management option at the top
-    echo "Cache Management" >/tmp/emus.list.tmp
+    # Add Cache Management and Settings options at the top
+    echo "Settings" >/tmp/emus.list.tmp
+    echo "Cache Management" >>/tmp/emus.list.tmp
     cat /tmp/emus.list >>/tmp/emus.list.tmp
     mv /tmp/emus.list.tmp /tmp/emus.list
 }
@@ -242,6 +267,114 @@ delete_menu() {
 }
 
 fetch_artwork() {
+    ROM_FOLDER="$1" ART_TYPE="${2:-snap}" REFRESH_CACHE="${3:-false}"
+    
+    if [ "$ARTWORK_PROVIDER" = "screenscraper" ]; then
+        fetch_artwork_screenscraper "$ROM_FOLDER" "$ART_TYPE" "$REFRESH_CACHE"
+    else
+        fetch_artwork_bittersweet "$ROM_FOLDER" "$ART_TYPE" "$REFRESH_CACHE"
+    fi
+}
+
+fetch_artwork_bittersweet() {
+    ROM_FOLDER="$1" ART_TYPE="${2:-snap}" REFRESH_CACHE="${3:-false}"
+    rom_file="$SDCARD_PATH/Artwork/.cache/matches/$ROM_FOLDER.in.txt"
+    artwork_file="$SDCARD_PATH/Artwork/.cache/matches/$ROM_FOLDER.$ART_TYPE.out.txt"
+    emu_name="$(get_emu_name "$ROM_FOLDER")"
+
+    mkdir -p "$SDCARD_PATH/Artwork/.cache/matches"
+    mkdir -p "$SDCARD_PATH/Artwork/$ROM_FOLDER/$ART_TYPE"
+    if [ "$REFRESH_CACHE" = "true" ] || [ ! -f "$artwork_file" ] || [ ! -s "$artwork_file" ]; then
+        ls -A "$SDCARD_PATH/Roms/$ROM_FOLDER" >"$rom_file"
+
+        curl -fksSL -X POST -H "Content-Type: text/plain" \
+            --data-binary "@$rom_file" \
+            -o "$artwork_file" \
+            "$IMAGE_MATCHER_URL/matches/$emu_name/$ART_TYPE"
+        if [ $? -ne 0 ]; then
+            return 1
+        fi
+
+        sync
+    fi
+
+    # add a newline to the end of this for proper parsing
+    echo >>"$artwork_file"
+
+    download_count=0
+    total_count="$(wc -l <"$artwork_file")"
+    rom_count="$(wc -l <"$rom_file")"
+    show_message "Ensuring artwork is cached" forever
+    while read -r line; do
+        # if the line is empty, skip it
+        if [ -z "$line" ]; then
+            continue
+        fi
+
+        rom_name="$(echo "$line" | cut -f1)"
+        artwork_url="$(echo "$line" | cut -f2)"
+
+        if [ -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/$ART_TYPE/$rom_name.png" ] && [ "$REFRESH_CACHE" = "false" ]; then
+            download_count=$((download_count + 1))
+            continue
+        fi
+
+        curl -fksSL -X GET -H "Content-Type: text/plain" \
+            -o "$SDCARD_PATH/Artwork/$ROM_FOLDER/$ART_TYPE/$rom_name.png" \
+            "$artwork_url"
+        if [ $? -ne 0 ]; then
+            show_message "Failed to download $rom_name image" forever
+            continue
+        fi
+
+        download_count=$((download_count + 1))
+        iteration=$((download_count % 10))
+        if [ "$iteration" -eq 0 ]; then
+            show_message "Downloaded $download_count/$total_count" forever
+        fi
+    done <"$artwork_file"
+
+    sync
+
+    is_nextui=false
+    image_folder="res"
+    base_directory="$SDCARD_PATH/Roms/$ROM_FOLDER"
+    if [ "$IS_NEXT" = "true" ] || [ "$IS_NEXT" = "yes" ]; then
+        is_nextui=true
+        image_folder="media"
+    elif [ -f "$SHARED_USERDATA_PATH/minuisettings.txt" ]; then
+        is_nextui=true
+        image_folder="media"
+    fi
+
+    show_message "Copying $download_count images to '$ROM_FOLDER' .$image_folder folder" forever
+    while read -r line; do
+        if [ -z "$line" ]; then
+            continue
+        fi
+
+        rom_name="$(echo "$line" | cut -f1)"
+        filename="${rom_name%.*}"
+        if [ -z "$rom_name" ] || [ -z "$filename" ]; then
+            continue
+        fi
+
+        mkdir -p "$base_directory/.$image_folder/"
+        if [ "$is_nextui" = "true" ]; then
+            cp -f "$SDCARD_PATH/Artwork/$ROM_FOLDER/$ART_TYPE/$rom_name.png" "$base_directory/.$image_folder/$filename.png"
+        else
+            gm convert "$SDCARD_PATH/Artwork/$ROM_FOLDER/$ART_TYPE/$rom_name.png" -resize "$MINUI_IMAGE_WIDTH" "$base_directory/.$image_folder/$rom_name.png"
+        fi
+
+        echo "$rom_name"
+    done <"$artwork_file"
+
+    sync
+
+    show_message "Copied $download_count images for $rom_count roms" 4
+}
+
+fetch_artwork_screenscraper() {
     ROM_FOLDER="$1" ART_TYPE="${2:-snap}" REFRESH_CACHE="${3:-false}"
     rom_file="$SDCARD_PATH/Artwork/.cache/matches/$ROM_FOLDER.in.txt"
     artwork_file="$SDCARD_PATH/Artwork/.cache/matches/$ROM_FOLDER.$ART_TYPE.out.txt"
@@ -721,6 +854,61 @@ EOF
     return 0
 }
 
+provider_selection_menu() {
+    rm -f /tmp/provider.list /tmp/provider-output
+    echo "Bittersweet (Default)" >/tmp/provider.list
+    echo "ScreenScraper" >>/tmp/provider.list
+
+    current_provider="Bittersweet"
+    [ "$ARTWORK_PROVIDER" = "screenscraper" ] && current_provider="ScreenScraper"
+
+    killall minui-presenter >/dev/null 2>&1 || true
+    minui-list --disable-auto-sleep --item-key "providers" --file "/tmp/provider.list" --format text --cancel-text "BACK" --title "Provider: $current_provider" --write-location /tmp/provider-output --write-value state
+
+    if [ $? -ne 0 ]; then
+        return 1
+    fi
+
+    output="$(cat /tmp/provider-output)"
+    selected_index="$(echo "$output" | jq -r '.selected')"
+    selection="$(echo "$output" | jq -r ".providers[$selected_index].name")"
+
+    case "$selection" in
+    "Bittersweet (Default)")
+        save_settings "bittersweet"
+        show_message "Provider set to Bittersweet" 2
+        ;;
+    "ScreenScraper")
+        save_settings "screenscraper"
+        show_message "Provider set to ScreenScraper" 2
+        ;;
+    esac
+    return 0
+}
+
+settings_menu() {
+    rm -f /tmp/settings_menu.list /tmp/settings-output
+    echo "Change Scraper Provider" >/tmp/settings_menu.list
+
+    killall minui-presenter >/dev/null 2>&1 || true
+    minui-list --disable-auto-sleep --item-key "settings_options" --file "/tmp/settings_menu.list" --format text --cancel-text "BACK" --title "Settings" --write-location /tmp/settings-output --write-value state
+
+    if [ $? -ne 0 ]; then
+        return 1
+    fi
+
+    output="$(cat /tmp/settings-output)"
+    selected_index="$(echo "$output" | jq -r '.selected')"
+    selection="$(echo "$output" | jq -r ".settings_options[$selected_index].name")"
+
+    case "$selection" in
+    "Change Scraper Provider")
+        provider_selection_menu
+        ;;
+    esac
+    return 0
+}
+
 cleanup() {
     rm -f /tmp/stay_awake
     rm -f /tmp/emus
@@ -780,6 +968,12 @@ main() {
 
         if [ -z "$selection" ]; then
             show_message "No selection made" forever
+            continue
+        fi
+
+        # Handle Settings selection
+        if [ "$selection" = "Settings" ]; then
+            settings_menu
             continue
         fi
 
