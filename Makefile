@@ -17,8 +17,9 @@ clean:
 	rm -f bin/*/jq.LICENSE || true
 	rm -f bin/*/minui-list || true
 	rm -f bin/*/minui-presenter || true
+	rm -f bin/*/matcher || true
 
-build: $(foreach platform,$(PLATFORMS),bin/$(platform)/minui-list bin/$(platform)/minui-presenter) $(foreach arch,$(ARCHITECTURES),bin/$(arch)/jq)
+build: $(foreach platform,$(PLATFORMS),bin/$(platform)/minui-list bin/$(platform)/minui-presenter) bin/tg5040/matcher $(foreach arch,$(ARCHITECTURES),bin/$(arch)/jq)
 
 bin/arm/jq:
 	mkdir -p bin/arm
@@ -39,6 +40,12 @@ bin/%/minui-presenter:
 	mkdir -p bin/$*
 	curl -f -o bin/$*/minui-presenter -sSL https://github.com/josegonzalez/minui-presenter/releases/download/$(MINUI_PRESENTER_VERSION)/minui-presenter-$*
 	chmod +x bin/$*/minui-presenter
+
+bin/tg5040/matcher:
+	mkdir -p bin/tg5040
+	cd matcher && go mod download
+	cd matcher && GOOS=linux GOARCH=arm CGO_ENABLED=0 go build -o ../bin/tg5040/matcher main.go
+	chmod +x bin/tg5040/matcher
 
 release: build
 	mkdir -p dist
