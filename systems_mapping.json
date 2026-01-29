@@ -1,0 +1,2533 @@
+[
+  {
+    "id": 1,
+    "names": [
+      "Genesis",
+      "Megadrive",
+      "Sega Genesis",
+      "Sega Megadrive",
+      "Super Aladdin Boy",
+      "genesis,megadrive",
+      "megadrive"
+    ]
+  },
+  {
+    "id": 2,
+    "names": [
+      "Master System",
+      "SMS",
+      "Sega Mark 3",
+      "Sega Mark III",
+      "Sega Master System",
+      "mastersystem"
+    ]
+  },
+  {
+    "id": 3,
+    "names": [
+      "Famicom",
+      "Family Computer",
+      "NES",
+      "Nintendo Entertainment System",
+      "Nintendo Entertainment System,Nintendo Famicom",
+      "Nintendo Famicom",
+      "Nintendo Family Computer",
+      "nes"
+    ]
+  },
+  {
+    "id": 4,
+    "names": [
+      "Nintendo Super Famicom,Super Nintendo Entertainment System",
+      "Nintendo super Famicom",
+      "SNES",
+      "Super Famicom",
+      "Super Nintendo",
+      "Super Nintendo Entertainment System",
+      "snes"
+    ]
+  },
+  {
+    "id": 6,
+    "names": [
+      "CPS 1",
+      "CPS I",
+      "Capcom Play System",
+      "Capcom Play System 1",
+      "Capcom Play System I",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 7,
+    "names": [
+      "CPS 2",
+      "CPS II",
+      "Capcom Play System 2",
+      "Capcom Play System II",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 8,
+    "names": [
+      "CPS 3",
+      "CPS III",
+      "Capcom Play System 3",
+      "Capcom Play System III",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 9,
+    "names": [
+      "GB",
+      "Game Boy",
+      "Nintendo GB",
+      "Nintendo Game Boy",
+      "gb"
+    ]
+  },
+  {
+    "id": 10,
+    "names": [
+      "GB Color",
+      "GBC",
+      "Game Boy Color",
+      "Nintendo GB Color",
+      "Nintendo GBC",
+      "Nintendo Game Boy Color",
+      "gbc"
+    ]
+  },
+  {
+    "id": 11,
+    "names": [
+      "Nintendo Virtual Boy",
+      "Nintendo vboy",
+      "Nintendo virtualboy",
+      "Virtual Boy",
+      "vboy",
+      "virtualboy"
+    ]
+  },
+  {
+    "id": 12,
+    "names": [
+      "GB Advance",
+      "GBA",
+      "Game Boy Advance",
+      "GameBoy Advance",
+      "Nintendo GB Advance",
+      "Nintendo GBA",
+      "Nintendo Game Boy Advance",
+      "Nintendo GameBoy Advance",
+      "gba"
+    ]
+  },
+  {
+    "id": 13,
+    "names": [
+      "GC",
+      "Game Cube",
+      "Gamecube",
+      "NGC",
+      "Nintendo GC",
+      "Nintendo Game Cube",
+      "Nintendo GameCube",
+      "gc"
+    ]
+  },
+  {
+    "id": 14,
+    "names": [
+      "Nintendo 64",
+      "n64"
+    ]
+  },
+  {
+    "id": 15,
+    "names": [
+      "DS",
+      "DSi",
+      "NDS",
+      "NDSi",
+      "Nintendo DS",
+      "Nintendo DSi",
+      "nds"
+    ]
+  },
+  {
+    "id": 16,
+    "names": [
+      "Nintendo WII",
+      "Nintendo Wii",
+      "WII",
+      "Wii",
+      "wii"
+    ]
+  },
+  {
+    "id": 17,
+    "names": [
+      "2DS",
+      "3DS",
+      "Nintendo 3DS"
+    ]
+  },
+  {
+    "id": 18,
+    "names": [
+      "Nintendo WII-U",
+      "Nintendo Wii U",
+      "WII-U",
+      "Wii U",
+      "wiiu"
+    ]
+  },
+  {
+    "id": 19,
+    "names": [
+      "32x",
+      "Genesis 32x",
+      "Megadrive 32X",
+      "Megadrive 32x",
+      "Sega 32X",
+      "Sega 32x",
+      "Sega Genesis 32x",
+      "Sega Mega 32x",
+      "Sega Megadrive 32x",
+      "Super 32x",
+      "sega32x"
+    ]
+  },
+  {
+    "id": 20,
+    "names": [
+      "Mega-CD",
+      "Sega CD",
+      "segacd"
+    ]
+  },
+  {
+    "id": 21,
+    "names": [
+      "GG",
+      "Game Gear",
+      "Sega GG",
+      "Sega Game Gear",
+      "gamegear"
+    ]
+  },
+  {
+    "id": 22,
+    "names": [
+      "Saturn",
+      "Sega Saturn",
+      "saturn"
+    ]
+  },
+  {
+    "id": 23,
+    "names": [
+      "DC",
+      "Dreamcast",
+      "Sega DC",
+      "Sega Dreamcast",
+      "dreamcast"
+    ]
+  },
+  {
+    "id": 25,
+    "names": [
+      "GP",
+      "Neo-Geo Pocket",
+      "SNK NGP",
+      "SNK Neo Geo Pocket",
+      "SNK Neo-Geo Pocket",
+      "ngp"
+    ]
+  },
+  {
+    "id": 26,
+    "names": [
+      "2600",
+      "A2600",
+      "Atari 2600",
+      "Atari2600",
+      "atari2600"
+    ]
+  },
+  {
+    "id": 27,
+    "names": [
+      "Atari Jaguar",
+      "Jaguar",
+      "atarijaguar",
+      "jaguar"
+    ]
+  },
+  {
+    "id": 28,
+    "names": [
+      "Atari Lynx",
+      "Lynx",
+      "atarilynx",
+      "lynx"
+    ]
+  },
+  {
+    "id": 29,
+    "names": [
+      "3DO",
+      "3DO Interactive Multiplayer",
+      "3do",
+      "Panasonic 3DO",
+      "Panasonic 3DO Interactive Multiplayer"
+    ]
+  },
+  {
+    "id": 30,
+    "names": [
+      "N-Gage",
+      "Nokia N-Gage"
+    ]
+  },
+  {
+    "id": 31,
+    "names": [
+      "NEC PC Engine",
+      "NEC PC Engine,NEC TurboGrafx-16",
+      "NEC TurboGrafx-16",
+      "PC Engine",
+      "TurboGrafx-16",
+      "pcengine",
+      "pcengine,tg16"
+    ]
+  },
+  {
+    "id": 32,
+    "names": [
+      "Microsoft XBOX",
+      "Microsoft Xbox",
+      "XBOX",
+      "Xbox"
+    ]
+  },
+  {
+    "id": 33,
+    "names": [
+      "Microsoft XBOX 360",
+      "Microsoft Xbox 360",
+      "XBOX 360",
+      "Xbox 360"
+    ]
+  },
+  {
+    "id": 34,
+    "names": [
+      "Microsoft XBOX One",
+      "Microsoft Xbox One",
+      "XBOX One",
+      "Xbox One"
+    ]
+  },
+  {
+    "id": 36,
+    "names": [
+      "ATOM",
+      "Acorn ATOM",
+      "Acorn Atom",
+      "Atom"
+    ]
+  },
+  {
+    "id": 37,
+    "names": [
+      "Acorn BBC Micro",
+      "Acorn BBC Microcomputer System",
+      "BBC Micro",
+      "BBC Microcomputer System",
+      "bbcmicro"
+    ]
+  },
+  {
+    "id": 39,
+    "names": [
+      "2600 SC",
+      "2600 Supercharger",
+      "A2600 SC",
+      "A2600 Supercharger",
+      "Atari 2600 SC",
+      "Atari 2600 Supercharger"
+    ]
+  },
+  {
+    "id": 40,
+    "names": [
+      "5200",
+      "A5200",
+      "Atari 5200",
+      "atari5200"
+    ]
+  },
+  {
+    "id": 41,
+    "names": [
+      "7800",
+      "A7800",
+      "Atari 7800",
+      "atari7800"
+    ]
+  },
+  {
+    "id": 42,
+    "names": [
+      "1040 ST",
+      "520 ST",
+      "Atari 1040 ST",
+      "Atari 520 ST",
+      "Atari ST",
+      "Atari STE",
+      "atarist"
+    ]
+  },
+  {
+    "id": 43,
+    "names": [
+      "1200XL",
+      "130XE",
+      "600XL",
+      "65XE",
+      "800XE",
+      "800XL",
+      "A400",
+      "A800",
+      "Atari 1200XL",
+      "Atari 130XE",
+      "Atari 400",
+      "Atari 600XL",
+      "Atari 65XE",
+      "Atari 8-Bit",
+      "Atari 800",
+      "Atari 800XE",
+      "Atari 800XL",
+      "Atari 8bit",
+      "Atari XEGS",
+      "XEGS",
+      "atari800"
+    ]
+  },
+  {
+    "id": 44,
+    "names": [
+      "Astrocade",
+      "Bally Astrocade",
+      "astrocade"
+    ]
+  },
+  {
+    "id": 45,
+    "names": [
+      "Bandai WSwan",
+      "Bandai WonderSwan",
+      "WSwan",
+      "WonderSwan",
+      "wonderswan"
+    ]
+  },
+  {
+    "id": 46,
+    "names": [
+      "Bandai WSwan Color",
+      "Bandai WonderSwan Color",
+      "WSwan Color",
+      "WonderSwan Color",
+      "wonderswancolor"
+    ]
+  },
+  {
+    "id": 47,
+    "names": [
+      "Cave",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 48,
+    "names": [
+      "ColecoVision",
+      "Colecovision",
+      "colecovision"
+    ]
+  },
+  {
+    "id": 49,
+    "names": [
+      "Daphne",
+      "arcade",
+      "daphne,arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "daphne,arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 50,
+    "names": [
+      "CoreGrafX",
+      "NEC CoreGrafX",
+      "PC-Engine DUO",
+      "PCE DUO",
+      "pcengine",
+      "pcengine,tg16"
+    ]
+  },
+  {
+    "id": 52,
+    "names": [
+      "Electronic Handheld Games",
+      "G&W",
+      "GW",
+      "Game & Watch",
+      "Game and Watch",
+      "Game'n'Watch",
+      "Nintendo Game & Watch",
+      "Nintendo Game and Watch",
+      "Nintendo Game'n'Watch",
+      "gameandwatch",
+      "gw"
+    ]
+  },
+  {
+    "id": 53,
+    "names": [
+      "Atomiswave",
+      "Sammy Atomiswave",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro,atomiswave"
+    ]
+  },
+  {
+    "id": 54,
+    "names": [
+      "Model 2",
+      "Model II",
+      "Sega Model 2",
+      "Sega Model II",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 55,
+    "names": [
+      "Model 3",
+      "Model III",
+      "Sega Model 3",
+      "Sega Model III",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "model3,arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 56,
+    "names": [
+      "Naomi",
+      "Sega Naomi",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro,naomigd,naomi"
+    ]
+  },
+  {
+    "id": 57,
+    "names": [
+      "PS One",
+      "PSX",
+      "Playstation",
+      "Sony PS One",
+      "Sony PSX",
+      "Sony PlayStation",
+      "Sony Playstation",
+      "psx"
+    ]
+  },
+  {
+    "id": 58,
+    "names": [
+      "PS2",
+      "Playstation 2",
+      "Playstation II",
+      "Sony PS2",
+      "Sony PlayStation 2",
+      "Sony Playstation 2",
+      "Sony Playstation II",
+      "ps2"
+    ]
+  },
+  {
+    "id": 59,
+    "names": [
+      "PS3",
+      "Playstation 3",
+      "Playstation III",
+      "Sony PS3",
+      "Sony Playstation 3",
+      "Sony Playstation III",
+      "ps3"
+    ]
+  },
+  {
+    "id": 60,
+    "names": [
+      "PS4",
+      "Playstation 4",
+      "Playstation IV",
+      "Sony PS4",
+      "Sony Playstation 4",
+      "Sony Playstation IV"
+    ]
+  },
+  {
+    "id": 61,
+    "names": [
+      "PS Portable",
+      "PSP",
+      "Playstation Portable",
+      "Sony PS Portable",
+      "Sony PSP",
+      "Sony Playstation Portable",
+      "psp"
+    ]
+  },
+  {
+    "id": 62,
+    "names": [
+      "PS Vita",
+      "Playstation Vita",
+      "Sony PS Vita",
+      "Sony Playstation Vita",
+      "Sony Vita",
+      "Vita"
+    ]
+  },
+  {
+    "id": 63,
+    "names": [
+      "Android"
+    ]
+  },
+  {
+    "id": 64,
+    "names": [
+      "A1000",
+      "A1200",
+      "A2000",
+      "A3000",
+      "A4000",
+      "A500",
+      "A500+",
+      "A600",
+      "Amiga",
+      "Amiga 1000",
+      "Amiga 1200",
+      "Amiga 2000",
+      "Amiga 3000",
+      "Amiga 4000",
+      "Amiga 500",
+      "Amiga 500+",
+      "Amiga 600",
+      "Commodore A1000",
+      "Commodore A1200",
+      "Commodore A2000",
+      "Commodore A3000",
+      "Commodore A4000",
+      "Commodore A500",
+      "Commodore A500+",
+      "Commodore A600",
+      "Commodore Amiga",
+      "Commodore Amiga 1000",
+      "Commodore Amiga 1200",
+      "Commodore Amiga 2000",
+      "Commodore Amiga 3000",
+      "Commodore Amiga 4000",
+      "Commodore Amiga 500",
+      "Commodore Amiga 500+",
+      "Commodore Amiga 600",
+      "amiga",
+      "amiga600"
+    ]
+  },
+  {
+    "id": 65,
+    "names": [
+      "464 Plus",
+      "464+",
+      "6128 Plus",
+      "6128+",
+      "Amstrad 464 Plus",
+      "Amstrad 464+",
+      "Amstrad 6128 Plus",
+      "Amstrad 6128+",
+      "Amstrad CPC",
+      "Amstrad CPC 464",
+      "Amstrad CPC 464 Plus",
+      "Amstrad CPC 464+",
+      "Amstrad CPC 472",
+      "Amstrad CPC 6128",
+      "Amstrad CPC 6128 Plus",
+      "Amstrad CPC 6128+",
+      "Amstrad CPC 664",
+      "CPC",
+      "CPC 464",
+      "CPC 464 Plus",
+      "CPC 464+",
+      "CPC 472",
+      "CPC 6128",
+      "CPC 6128 Plus",
+      "CPC 6128+",
+      "CPC 664",
+      "amstradcpc"
+    ]
+  },
+  {
+    "id": 66,
+    "names": [
+      "C64",
+      "Commodore 64",
+      "Commodore 64,Commodore 128",
+      "c64"
+    ]
+  },
+  {
+    "id": 67,
+    "names": [
+      "Epoch Super Cassette Vision",
+      "Super Cassette Vision",
+      "Yeno Super Cassette Vision"
+    ]
+  },
+  {
+    "id": 68,
+    "names": [
+      "Neo-Geo MVS",
+      "SNK Neo Geo MVS",
+      "SNK Neo-Geo MVS"
+    ]
+  },
+  {
+    "id": 69,
+    "names": [
+      "ST-V",
+      "Sega ST-V",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 70,
+    "names": [
+      "Neo-Geo CD",
+      "Neo-geo CD",
+      "Neo-geo CD-Rom",
+      "SNK Neo Geo CD",
+      "SNK Neo-geo CD",
+      "SNK Neo-geo CD-Rom",
+      "neogeocd"
+    ]
+  },
+  {
+    "id": 72,
+    "names": [
+      "NEC PC-FX",
+      "PC-FX",
+      "pcfx"
+    ]
+  },
+  {
+    "id": 73,
+    "names": [
+      "Commodore VIC-20",
+      "Commodore Vic-20",
+      "Vic-20",
+      "c64"
+    ]
+  },
+  {
+    "id": 74,
+    "names": [
+      "Casio PV-1000",
+      "PV-1000"
+    ]
+  },
+  {
+    "id": 75,
+    "names": [
+      "AdvMAME",
+      "AdvanceMAME",
+      "Arcade",
+      "FBA",
+      "FBA-LibRetro",
+      "Final Burn Alpha,HBMAME,MAME,MiSFiT MAME",
+      "MAME",
+      "MAME-ADVMAME",
+      "MAME-LibRetro",
+      "MAME-MAME4ALL",
+      "MAME4ALL",
+      "MESS",
+      "Mame",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro,fbneo"
+    ]
+  },
+  {
+    "id": 76,
+    "names": [
+      "Sinclair ZX Spectrum",
+      "Sinclair ZX-Spectrum",
+      "ZX Spectrum",
+      "ZX-Spectrum",
+      "zxspectrum"
+    ]
+  },
+  {
+    "id": 77,
+    "names": [
+      "Sinclair ZX-81",
+      "Sinclair ZX81",
+      "ZX-81",
+      "ZX81",
+      "zx81"
+    ]
+  },
+  {
+    "id": 78,
+    "names": [
+      "Adventure Vision",
+      "Entex Adventure Vision"
+    ]
+  },
+  {
+    "id": 79,
+    "names": [
+      "Sharp X68000",
+      "Sharp X68k",
+      "X68000",
+      "X68k",
+      "x68000"
+    ]
+  },
+  {
+    "id": 80,
+    "names": [
+      "Channel F",
+      "Fairchild Channel F",
+      "Fairchild VES",
+      "Fairchild Video Entertainment System",
+      "VES",
+      "Video Entertainment System",
+      "channelf"
+    ]
+  },
+  {
+    "id": 81,
+    "names": [
+      "Action Max",
+      "WoW Action Max",
+      "World of Wonder Action Max"
+    ]
+  },
+  {
+    "id": 82,
+    "names": [
+      "NGPC",
+      "Neo-Geo Pocket Color",
+      "Neo-geo PC",
+      "Neo-geo Pocket Color",
+      "SNK NGPC",
+      "SNK Neo Geo Pocket Color",
+      "SNK Neo-geo PC",
+      "SNK Neo-geo Pocket Color",
+      "ngpc"
+    ]
+  },
+  {
+    "id": 83,
+    "names": [
+      "Aamber Pegasus"
+    ]
+  },
+  {
+    "id": 84,
+    "names": [
+      "Acorn Archimedes",
+      "Archimedes"
+    ]
+  },
+  {
+    "id": 85,
+    "names": [
+      "Acorn Electron",
+      "Electron"
+    ]
+  },
+  {
+    "id": 86,
+    "names": [
+      "Apple 1",
+      "Apple 2",
+      "Apple 2+",
+      "Apple 2C",
+      "Apple 2C Plus",
+      "Apple 2C+",
+      "Apple 2E",
+      "Apple 2GS",
+      "Apple 3",
+      "Apple I",
+      "Apple II",
+      "Apple II+",
+      "Apple II,Apple IIGS",
+      "Apple IIC",
+      "Apple IIC Plus",
+      "Apple IIC+",
+      "Apple IIE",
+      "Apple IIGS",
+      "Apple III",
+      "apple2"
+    ]
+  },
+  {
+    "id": 87,
+    "names": [
+      "Amstrad GX-4000",
+      "Amstrad GX4000",
+      "GX-4000",
+      "GX4000",
+      "gx4000"
+    ]
+  },
+  {
+    "id": 88,
+    "names": [
+      "Camputers Lynx",
+      "Camputers Lynx 128",
+      "Camputers Lynx 48",
+      "Camputers Lynx 96",
+      "Lynx 128",
+      "Lynx 48",
+      "Lynx 96"
+    ]
+  },
+  {
+    "id": 89,
+    "names": [
+      "Adam",
+      "Coleco ADAM",
+      "Coleco Adam"
+    ]
+  },
+  {
+    "id": 90,
+    "names": [
+      "Cougar Boy",
+      "Creatronic Mega Duck",
+      "Mega Duck"
+    ]
+  },
+  {
+    "id": 91,
+    "names": [
+      "Dragon 32",
+      "Dragon 32-64",
+      "Dragon 32/64",
+      "Dragon 64",
+      "Dragon Data Dragon",
+      "dragon",
+      "dragon32"
+    ]
+  },
+  {
+    "id": 92,
+    "names": [
+      "Colour Genie",
+      "EACA Colour Genie",
+      "EACA EG-2000",
+      "EACA EG-2000 Colour Genie",
+      "EACA EG2000 Colour Genie",
+      "EG-2000",
+      "EG2000 Colour Genie"
+    ]
+  },
+  {
+    "id": 93,
+    "names": [
+      "BK",
+      "BK-0010",
+      "BK-0010.01",
+      "BK-0010Sh",
+      "BK-0011",
+      "BK-0011M",
+      "Electonika BK",
+      "Electonika BK-0010",
+      "Electonika BK-0010.01",
+      "Electonika BK-0010Sh",
+      "Electonika BK-0011",
+      "Electonika BK-0011M",
+      "Elektronika BK"
+    ]
+  },
+  {
+    "id": 94,
+    "names": [
+      "Advision Home Arcade",
+      "Arcadia 2001",
+      "Bandai Arcadia",
+      "Dynavision",
+      "Emerson 2001",
+      "Emerson Arcadia 2001",
+      "Emerson Radio Arcadia 2001",
+      "GrandStand Video Master",
+      "HMG-2650",
+      "Hanimex MPT-03",
+      "Home Arcade Centre",
+      "ITMC MPT-03",
+      "Intelligent Game MPT-03",
+      "Intercord XL 2000 System",
+      "Intervision 2001",
+      "Leisure-Vision",
+      "Leonardo",
+      "Ormatu 2001",
+      "P.I.C Ekusera",
+      "Palladium Video Computer Game",
+      "Polybrain Video Computer Game",
+      "Poppy MPT-03 Tele Computer Spiel",
+      "Prestige Video Computer Game MPT-03",
+      "Rowtron 2000",
+      "Rowtron Video Computer Game MPT-03",
+      "Schmid TVG-2000",
+      "Sheen Home Video Centre 2001",
+      "Soundic MPT-03",
+      "Tele Brain",
+      "Tele-Fever",
+      "Tele-computer Cosmos",
+      "Tempest Video Computer Game",
+      "Tobby MPT-03",
+      "Trakton Computer Video Game",
+      "Tryom Video Game Center",
+      "Tunix Home Arcade",
+      "UVI Compu-Game"
+    ]
+  },
+  {
+    "id": 95,
+    "names": [
+      "Epoch Game Pocket Computer",
+      "Game Pocket Computer"
+    ]
+  },
+  {
+    "id": 96,
+    "names": [
+      "EXL 100",
+      "Exelvision EXL 100"
+    ]
+  },
+  {
+    "id": 97,
+    "names": [
+      "FM-7",
+      "FM-77",
+      "FM-77AV",
+      "FM-8",
+      "FM-NEW 7",
+      "Fujitsu FM-7",
+      "Fujitsu Micro 7"
+    ]
+  },
+  {
+    "id": 98,
+    "names": [
+      "Casio Loopy",
+      "Loopy"
+    ]
+  },
+  {
+    "id": 99,
+    "names": [
+      "Commodore 16",
+      "Commodore 16 & Plus4",
+      "Commodore Minus/60",
+      "Commodore Plus 4",
+      "Commodore Plus/4",
+      "Minus/60",
+      "Plus/4"
+    ]
+  },
+  {
+    "id": 100,
+    "names": [
+      "Funtech Super A'Can",
+      "Funtech Super Acan",
+      "Super A'Can",
+      "Super A'can"
+    ]
+  },
+  {
+    "id": 101,
+    "names": [
+      "GP32",
+      "Game Park 32",
+      "GamePark 32"
+    ]
+  },
+  {
+    "id": 102,
+    "names": [
+      "GCE Vectrex",
+      "Vectrex",
+      "vectrex"
+    ]
+  },
+  {
+    "id": 103,
+    "names": [
+      "Game Master",
+      "Game Tronic",
+      "Hartung Game Master",
+      "Super Game",
+      "Systema 2000"
+    ]
+  },
+  {
+    "id": 104,
+    "names": [
+      "Brandt Japac JO7400",
+      "Brandt Jopac",
+      "C7420",
+      "Continental Edision Jopac",
+      "Continental Edison Jopac JO 1450",
+      "G7000",
+      "G7200",
+      "G7400",
+      "G7401",
+      "JO 1450",
+      "JO 7400",
+      "Japac JO 7400",
+      "Jopac",
+      "Jopac JO 1450",
+      "Magnavox Odyssey 2",
+      "Magnavox Odyssey 2,Philips Videopac Plus G7400",
+      "Magnavox Odyssey2",
+      "Magnavox Odyssey²",
+      "Odyssey2",
+      "Odyssey²",
+      "Philips Videopac",
+      "Philips Videopac C52",
+      "Philips Videopac C7420",
+      "Philips Videopac G7000",
+      "Philips Videopac G7200",
+      "Philips Videopac G7401",
+      "Philips Videopac N60",
+      "Philips Videopac+ G7400",
+      "Radiola Videopac",
+      "Radiola Videopac Jet 25",
+      "Radiola Videopac Jet 27",
+      "Radiola Videopac Jet 47",
+      "Radiola Videopac Jet 471",
+      "Radiola Videopac Jet 74+",
+      "Radiola Videopac Jet 741+",
+      "Sabe Jopac",
+      "Schneider Videopac",
+      "Schneider Videopac 7200",
+      "Siera Videopac",
+      "Videopac",
+      "Videopac 7200",
+      "Videopac C52",
+      "Videopac C7420",
+      "Videopac G7000",
+      "Videopac G7200",
+      "Videopac G7401",
+      "Videopac Jet 25",
+      "Videopac Jet 27",
+      "Videopac Jet 47",
+      "Videopac Jet 471",
+      "Videopac Jet 74+",
+      "Videopac Jet 741+",
+      "Videopac N60",
+      "Videopac+ G7400",
+      "o2em",
+      "odyssey2,videopac"
+    ]
+  },
+  {
+    "id": 105,
+    "names": [
+      "NEC PC Engine SuperGrafx",
+      "NEC SuperGrafx",
+      "PC Engine SuperGrafx",
+      "SuperGrafx",
+      "supergrafx"
+    ]
+  },
+  {
+    "id": 106,
+    "names": [
+      "FCD",
+      "FCDS",
+      "FDS",
+      "FKDS",
+      "Famicom Disk System",
+      "Famikom Disk System",
+      "Family Computer Disk System",
+      "Famiri Konpyuta Disuku Shisutemu",
+      "Nintendo FCD",
+      "Nintendo FCDS",
+      "Nintendo FDS",
+      "Nintendo FKDS",
+      "Nintendo Famicom Disk System",
+      "Nintendo Famikom Disk System",
+      "Nintendo Family Computer Disk System",
+      "Nintendo Famiri Konpyuta Disuku Shisutemu",
+      "fds"
+    ]
+  },
+  {
+    "id": 107,
+    "names": [
+      "BS-X",
+      "Nintendo BS-X",
+      "Nintendo Satellaview",
+      "Satellaview",
+      "satellaview",
+      "snes"
+    ]
+  },
+  {
+    "id": 108,
+    "names": [
+      "Bandai Sufami Turbo",
+      "Sufami Turbo",
+      "snes",
+      "sufami"
+    ]
+  },
+  {
+    "id": 109,
+    "names": [
+      "Othello Multivisio",
+      "SC 3000",
+      "SG-1000",
+      "SG-1000 2",
+      "SG-1000 II",
+      "Sega Game 1000",
+      "Sega SG-1000",
+      "sg-1000",
+      "sg1000"
+    ]
+  },
+  {
+    "id": 110,
+    "names": [
+      "Nintendo Power"
+    ]
+  },
+  {
+    "id": 111,
+    "names": [
+      "Amiga (AGA)",
+      "Amiga AGA",
+      "Commodore Amiga",
+      "amiga",
+      "amiga1200"
+    ]
+  },
+  {
+    "id": 112,
+    "names": [
+      "Taito Type X",
+      "Taito Type X+",
+      "Taito Type X7",
+      "Taito Type XZero",
+      "Taito Type X² Satellite Terminal",
+      "Taito Type X³",
+      "Taito Type-X²",
+      "Type X",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 113,
+    "names": [
+      "MSX",
+      "MSX1",
+      "Microsoft MSX",
+      "Microsoft MSX1",
+      "msx",
+      "msx1"
+    ]
+  },
+  {
+    "id": 114,
+    "names": [
+      "NEC PC Engine CD",
+      "NEC PC Engine CD-Rom",
+      "NEC PC Engine-CD",
+      "NEC PC Engine-CD,NEC TurboGrafx-CD",
+      "PC Engine CD",
+      "PC Engine CD-Rom",
+      "pce-cd,tg-cd",
+      "pcenginecd"
+    ]
+  },
+  {
+    "id": 115,
+    "names": [
+      "INTV III",
+      "INTV Super Pro System",
+      "Intelliputer",
+      "Intellivision",
+      "Intellivision 2",
+      "Intellivision II",
+      "Mattel ECS",
+      "Mattel Intelliputer",
+      "Mattel Intellivision",
+      "Mattel Intellivision 2",
+      "Mattel Intellivision II",
+      "Super Pro System",
+      "intellivision"
+    ]
+  },
+  {
+    "id": 116,
+    "names": [
+      "MSX2",
+      "Microsoft MSX2",
+      "msx",
+      "msx2"
+    ]
+  },
+  {
+    "id": 117,
+    "names": [
+      "MSX2+",
+      "MSX2Plus",
+      "Microsoft MSX2+",
+      "Microsoft MSX2Plus",
+      "msx",
+      "msx,msx2"
+    ]
+  },
+  {
+    "id": 118,
+    "names": [
+      "MSX Turbo R",
+      "MSX-R Turbo",
+      "Microsoft MSX",
+      "Microsoft MSX R Turbo",
+      "msx",
+      "msxturbor"
+    ]
+  },
+  {
+    "id": 119,
+    "names": [
+      "GB Advance e-Reader",
+      "GBA e-Reader",
+      "GameBoy Advance e-Reader",
+      "Nintendo GB Advance e-Reader",
+      "Nintendo GBA e-Reader",
+      "Nintendo GameBoy Advance e-Reader",
+      "Nintendo e-Reader"
+    ]
+  },
+  {
+    "id": 120,
+    "names": [
+      "V.Smile",
+      "VTech V.Smile"
+    ]
+  },
+  {
+    "id": 121,
+    "names": [
+      "Game.com",
+      "Tiger Game.com"
+    ]
+  },
+  {
+    "id": 122,
+    "names": [
+      "64 DD",
+      "64dd",
+      "N64 DD",
+      "Nintendo 64 DD",
+      "Nintendo 64DD",
+      "n64"
+    ]
+  },
+  {
+    "id": 123,
+    "names": [
+      "ResidualVM",
+      "ScummVM",
+      "scummvm",
+      "scummvm,residualvm"
+    ]
+  },
+  {
+    "id": 124,
+    "names": [
+      "Mikrosha",
+      "Mikrosha Computer",
+      "Radio-86RK Mikrosha"
+    ]
+  },
+  {
+    "id": 125,
+    "names": [
+      "Pecom 64"
+    ]
+  },
+  {
+    "id": 126,
+    "names": [
+      "Ace 4000",
+      "Ace4000",
+      "Jupiter ACE",
+      "Jupiter Ace",
+      "Jupiter Ace 4000"
+    ]
+  },
+  {
+    "id": 127,
+    "names": [
+      "Nintendo Super GG",
+      "Nintendo Super Game Boy",
+      "Nintendo Super GameBoy",
+      "Super GB",
+      "Super Game Boy",
+      "Super GameBoy",
+      "gb"
+    ]
+  },
+  {
+    "id": 128,
+    "names": [
+      "Nintendo Super GG 2",
+      "Nintendo Super Game Boy",
+      "Nintendo Super GameBoy 2",
+      "Super GB 2",
+      "Super Game Boy 2",
+      "Super GameBoy 2",
+      "gb"
+    ]
+  },
+  {
+    "id": 129,
+    "names": [
+      "Amiga CDTV",
+      "Amliga CDTV",
+      "CDTV",
+      "Commodore Amiga CDTV",
+      "Commodore CDTV",
+      "amiga",
+      "amigacdtv"
+    ]
+  },
+  {
+    "id": 130,
+    "names": [
+      "Amiga CD32",
+      "Commodore Amiga CD32",
+      "amiga",
+      "amigacd32"
+    ]
+  },
+  {
+    "id": 131,
+    "names": [
+      "Eurêka Adresstal",
+      "Eurêka Nova 64",
+      "Eurêka Oric Adresstal",
+      "Eurêka Oric Atmos",
+      "Eurêka Oric Nova 64",
+      "Eurêka Oric Telestrat",
+      "Eurêka Telestrat",
+      "Oric 1 / Atmos",
+      "Oric Atmos",
+      "Oric-1",
+      "Oric-I",
+      "Tangerince Oric Atmos",
+      "Tangerine Oric",
+      "Tangerine Oric-1",
+      "Tangerine Oric-I",
+      "oric"
+    ]
+  },
+  {
+    "id": 133,
+    "names": [
+      "CD-I",
+      "CD-i",
+      "Philips CD-I",
+      "Philips CD-i"
+    ]
+  },
+  {
+    "id": 134,
+    "names": [
+      "Amiga CD",
+      "Commodore Amiga CD",
+      "Commodore Amiga CD32",
+      "amiga",
+      "amigacd32"
+    ]
+  },
+  {
+    "id": 135,
+    "names": [
+      "DOS",
+      "DosBox",
+      "MS-DOS",
+      "MS-Dos",
+      "Microsoft DOS",
+      "Microsoft MS-DOS",
+      "PC",
+      "PC Dos",
+      "PC-DOS",
+      "PrBoom",
+      "Total DOS",
+      "Total DOS Collection",
+      "eXoDos",
+      "pc"
+    ]
+  },
+  {
+    "id": 136,
+    "names": [
+      "Microsoft Windows 3.0",
+      "Microsoft Windows 3.1",
+      "Microsoft Windows 3.x",
+      "PC Win3.xx",
+      "W3.0",
+      "W3.1",
+      "Win 3.0",
+      "Win 3.1",
+      "Windows 3.0",
+      "Windows 3.1",
+      "Windows 3.X"
+    ]
+  },
+  {
+    "id": 137,
+    "names": [
+      "Microsoft Windows 95",
+      "Microsoft Windows 98",
+      "Microsoft Windows 98SE",
+      "Microsoft Windows 98SE2",
+      "Microsoft Windows Millenium",
+      "PC Win9X",
+      "W95",
+      "W98",
+      "W98SE",
+      "W98SE2",
+      "Win 95",
+      "Win 98",
+      "Win 98SE",
+      "Win 98SE2",
+      "Win Millenium",
+      "Windows 95",
+      "Windows 98",
+      "Windows 98SE",
+      "Windows 98SE2",
+      "Windows Millenium"
+    ]
+  },
+  {
+    "id": 138,
+    "names": [
+      "Microsoft Windows",
+      "Microsoft Windows 10",
+      "Microsoft Windows 2000",
+      "Microsoft Windows 7",
+      "Microsoft Windows 8",
+      "Microsoft Windows 8.1",
+      "Microsoft Windows Vista",
+      "Microsoft Windows XP",
+      "PC Windows",
+      "W10",
+      "W2000",
+      "W7",
+      "W8",
+      "W8.1",
+      "WXP",
+      "Win 10",
+      "Win 2000",
+      "Win 7",
+      "Win 8",
+      "Win 8.1",
+      "Win Vista",
+      "Win XP",
+      "Windows",
+      "Windows 10",
+      "Windows 2000",
+      "Windows 7",
+      "Windows 8",
+      "Windows 8.1",
+      "Windows Vista",
+      "Windows XP"
+    ]
+  },
+  {
+    "id": 139,
+    "names": [
+      "Amiga CD32 (hack)",
+      "Commodore Amiga CD32",
+      "amiga",
+      "amigacd32"
+    ]
+  },
+  {
+    "id": 141,
+    "names": [
+      "MO5",
+      "MO5E",
+      "MO5NR",
+      "MO6",
+      "Olivetti Prodest PC128",
+      "TO7",
+      "TO7-70",
+      "TO8",
+      "TO8D",
+      "TO9",
+      "TO9 Plus",
+      "TO9+",
+      "Thomson MO",
+      "Thomson MO/TO",
+      "Thomson MO5",
+      "Thomson MO5E",
+      "Thomson MO5NR",
+      "Thomson MO6",
+      "Thomson TO",
+      "Thomson TO7",
+      "Thomson TO7,Thomson MO5",
+      "Thomson TO7-70",
+      "Thomson TO8",
+      "Thomson TO8D",
+      "Thomson TO9",
+      "Thomson TO9 Plus",
+      "Thomson TO9+",
+      "to8"
+    ]
+  },
+  {
+    "id": 142,
+    "names": [
+      "Neo-Geo",
+      "Neo-Geo AES",
+      "Neo-Geo MVS",
+      "SNK Neo Geo",
+      "SNK Neo-Geo",
+      "SNK Neo-Geo AES",
+      "SNK Neo-Geo MVS",
+      "neogeo"
+    ]
+  },
+  {
+    "id": 143,
+    "names": [
+      "Pinball FX2"
+    ]
+  },
+  {
+    "id": 144,
+    "names": [
+      "CoCo",
+      "TRS-80 CoCo",
+      "TRS-80 Color Computer",
+      "Tandy TRS-80",
+      "Tandy TRS-80 CoCo",
+      "Tandy TRS-80 Color Computer",
+      "coco"
+    ]
+  },
+  {
+    "id": 145,
+    "names": [
+      "Linux"
+    ]
+  },
+  {
+    "id": 146,
+    "names": [
+      "Apple Mac OS",
+      "Apple Mac-OS",
+      "Apple Mac-OSX",
+      "Apple OS",
+      "Apple OSX",
+      "Mac OS",
+      "Mac-OS",
+      "Mac-OSX",
+      "OSX",
+      "macintosh"
+    ]
+  },
+  {
+    "id": 147,
+    "names": [
+      "Sega Classics",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 148,
+    "names": [
+      "Irem Classics",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 149,
+    "names": [
+      "SETA",
+      "Seta",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 150,
+    "names": [
+      "Midway Classics",
+      "Midway Classics,Williams Classics",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 151,
+    "names": [
+      "Capcom Classics",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 152,
+    "names": [
+      "8ing/Raizing",
+      "Eighting / Raizing",
+      "Eighting/Raizing",
+      "R8zing",
+      "Raizing",
+      "Raizing/8ing",
+      "Raizing/Eighting",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 153,
+    "names": [
+      "TECMO",
+      "Tecmo",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 154,
+    "names": [
+      "SNK Classics",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 155,
+    "names": [
+      "Namco Classics",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 156,
+    "names": [
+      "Namco System 22",
+      "System 22",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 157,
+    "names": [
+      "Taito Classics",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 158,
+    "names": [
+      "Konami Classics",
+      "Konami Classics,Konami e-AMUSEMENT",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 159,
+    "names": [
+      "Jaleco",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 160,
+    "names": [
+      "Atari Classics",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 161,
+    "names": [
+      "Nintendo Classics",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 162,
+    "names": [
+      "Data East Classics",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 163,
+    "names": [
+      "NMK",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 164,
+    "names": [
+      "Sammy Classics",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 165,
+    "names": [
+      "Exidy",
+      "Exidy Sorcerer",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 166,
+    "names": [
+      "Acclaim",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 167,
+    "names": [
+      "Psikyo",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 168,
+    "names": [
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro",
+      "non Jeu"
+    ]
+  },
+  {
+    "id": 169,
+    "names": [
+      "Technos",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 170,
+    "names": [
+      "American Laser Games",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 171,
+    "names": [
+      "Atari Jaguar CD",
+      "Atari Jaguar CD-Rom",
+      "Jaguar CD",
+      "Jaguar CD-Rom"
+    ]
+  },
+  {
+    "id": 172,
+    "names": [
+      "PS Minis",
+      "Playstation Minis",
+      "Playstation minis",
+      "Sony PS Minis",
+      "Sony PSP Minis",
+      "Sony Playstation Minis",
+      "psp"
+    ]
+  },
+  {
+    "id": 173,
+    "names": [
+      "Dynax",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 174,
+    "names": [
+      "Kaneko",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 175,
+    "names": [
+      "Video System Co.",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 176,
+    "names": [
+      "IGS",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 177,
+    "names": [
+      "Comad",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 178,
+    "names": [
+      "Amcoe",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 179,
+    "names": [
+      "Century Electronics",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 180,
+    "names": [
+      "Nichibutsu",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 181,
+    "names": [
+      "Visco",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 182,
+    "names": [
+      "Alpha Denshi Co.",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 183,
+    "names": [
+      "Coleco",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 184,
+    "names": [
+      "PlayChoice",
+      "Playchoice",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 185,
+    "names": [
+      "Altus",
+      "Atlus",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 186,
+    "names": [
+      "Banpresto",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 187,
+    "names": [
+      "SemiCom",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 188,
+    "names": [
+      "Universal",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 189,
+    "names": [
+      "Mitchell",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 190,
+    "names": [
+      "Seibu Kaihatsu",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 191,
+    "names": [
+      "Toaplan",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 192,
+    "names": [
+      "Cinematronics",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 193,
+    "names": [
+      "Incredible Technologies",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 194,
+    "names": [
+      "Gaelco",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 195,
+    "names": [
+      "Mega-Tech",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 196,
+    "names": [
+      "Mega-Play",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 197,
+    "names": [
+      "Flipper",
+      "Pinball"
+    ]
+  },
+  {
+    "id": 198,
+    "names": [
+      "Visual Pinball"
+    ]
+  },
+  {
+    "id": 199,
+    "names": [
+      "Future Pinball"
+    ]
+  },
+  {
+    "id": 200,
+    "names": [
+      "the Pinball Arcade"
+    ]
+  },
+  {
+    "id": 201,
+    "names": [
+      "Pinball FX3"
+    ]
+  },
+  {
+    "id": 202,
+    "names": [
+      "Nintendo Super Famicom,Super Nintendo Entertainment System",
+      "Snes - Super Mario World Hacks",
+      "Super Nintendo Entertainment System - Mario Hacks",
+      "Super Nintendo Entertainment System - Super Mario Mario Hacks",
+      "snes"
+    ]
+  },
+  {
+    "id": 203,
+    "names": [
+      "Genesis - Sonic The Hedgehog 2 Hacks",
+      "Megadrive - Sonic The Hedgehog 2 Hacks",
+      "Sega Genesis",
+      "genesis,megadrive",
+      "megadrive"
+    ]
+  },
+  {
+    "id": 205,
+    "names": [
+      "TI-99",
+      "TI-99/4A",
+      "Texas Instruments TI 99/4A",
+      "ti99"
+    ]
+  },
+  {
+    "id": 206,
+    "names": [
+      "Lutro",
+      "lutro"
+    ]
+  },
+  {
+    "id": 207,
+    "names": [
+      "Watara Supervision"
+    ]
+  },
+  {
+    "id": 208,
+    "names": [
+      "NEC PC-9801",
+      "PC98",
+      "PC9801",
+      "Pc98",
+      "pc98"
+    ]
+  },
+  {
+    "id": 209,
+    "names": [
+      "Gottlieb",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 210,
+    "names": [
+      "MSU-1",
+      "SNES MSU-1",
+      "Super Nintendo MSU-1"
+    ]
+  },
+  {
+    "id": 211,
+    "names": [
+      "PokeMini",
+      "Pokemon Mini",
+      "Pokémon mini",
+      "pokemini"
+    ]
+  },
+  {
+    "id": 213,
+    "names": [
+      "MGT SAM Coupé",
+      "SAM Coupé",
+      "samcoupe"
+    ]
+  },
+  {
+    "id": 214,
+    "names": [
+      "OpenBOR",
+      "openbor"
+    ]
+  },
+  {
+    "id": 215,
+    "names": [
+      "Z-Machine"
+    ]
+  },
+  {
+    "id": 216,
+    "names": [
+      "Uzebox",
+      "uzebox"
+    ]
+  },
+  {
+    "id": 217,
+    "names": [
+      "Apple IIGS",
+      "apple2gs",
+      "appleIIgs"
+    ]
+  },
+  {
+    "id": 218,
+    "names": [
+      "Spectravideo",
+      "spectravideo"
+    ]
+  },
+  {
+    "id": 219,
+    "names": [
+      "Palm OS",
+      "palm",
+      "palmos"
+    ]
+  },
+  {
+    "id": 220,
+    "names": [
+      "Sharp X1",
+      "X1",
+      "x1"
+    ]
+  },
+  {
+    "id": 221,
+    "names": [
+      "NEC PC-8801",
+      "pc88"
+    ]
+  },
+  {
+    "id": 222,
+    "names": [
+      "TIC-80",
+      "tic80"
+    ]
+  },
+  {
+    "id": 223,
+    "names": [
+      "Solarus",
+      "solarus"
+    ]
+  },
+  {
+    "id": 225,
+    "names": [
+      "Nintendo Switch",
+      "Switch"
+    ]
+  },
+  {
+    "id": 227,
+    "names": [
+      "Naomi GD",
+      "Naomi GD-ROM",
+      "Sega Naomi-GD",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro,naomigd,naomi"
+    ]
+  },
+  {
+    "id": 230,
+    "names": [
+      "Naomi 2",
+      "Sega Naomi 2",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  },
+  {
+    "id": 231,
+    "names": [
+      "EasyRPG",
+      "easyrpg"
+    ]
+  },
+  {
+    "id": 234,
+    "names": [
+      "Pico-8",
+      "pico8"
+    ]
+  },
+  {
+    "id": 237,
+    "names": [
+      "Pocket Challenge V2"
+    ]
+  },
+  {
+    "id": 240,
+    "names": [
+      "PET"
+    ]
+  },
+  {
+    "id": 241,
+    "names": [
+      "CreatiVision",
+      "creativision",
+      "crvision"
+    ]
+  },
+  {
+    "id": 244,
+    "names": [
+      "LowRes NX",
+      "lowresnx"
+    ]
+  },
+  {
+    "id": 250,
+    "names": [
+      "Kids Computer Pico",
+      "Sega Pico"
+    ]
+  },
+  {
+    "id": 253,
+    "names": [
+      "FM Towns",
+      "fmtmarty"
+    ]
+  },
+  {
+    "id": 258,
+    "names": [
+      "Hikaru"
+    ]
+  },
+  {
+    "id": 261,
+    "names": [
+      "Philips VG 5000"
+    ]
+  },
+  {
+    "id": 262,
+    "names": [
+      "WASM-4",
+      "wasm"
+    ]
+  },
+  {
+    "id": 263,
+    "names": [
+      "Arduboy",
+      "arduboy"
+    ]
+  },
+  {
+    "id": 266,
+    "names": [
+      "Gamate"
+    ]
+  },
+  {
+    "id": 269,
+    "names": [
+      "Tekno Parrot",
+      "TeknoParrot"
+    ]
+  },
+  {
+    "id": 272,
+    "names": [
+      "Vircon32",
+      "vircon32"
+    ]
+  },
+  {
+    "id": 275,
+    "names": [
+      "Voxatron",
+      "voxatron"
+    ]
+  },
+  {
+    "id": 278,
+    "names": [
+      "Nes - Super Mario Bros. Hacks",
+      "Nintendo Entertainment System - Mario Hacks",
+      "Nintendo Entertainment System - Super Mario Mario Hacks",
+      "Nintendo Famicom, Nintendo Entertainment System",
+      "nes"
+    ]
+  },
+  {
+    "id": 281,
+    "names": [
+      "VC 4000",
+      "Video Computer 4000"
+    ]
+  },
+  {
+    "id": 284,
+    "names": [
+      "PS5",
+      "Playstation 5",
+      "Playstation V",
+      "Sony PS5",
+      "Sony Playstation 5",
+      "Sony Playstation V"
+    ]
+  },
+  {
+    "id": 287,
+    "names": [
+      "P2000T",
+      "p2000t"
+    ]
+  },
+  {
+    "id": 290,
+    "names": [
+      "Port",
+      "PrBoom"
+    ]
+  },
+  {
+    "id": 293,
+    "names": [
+      "Tamagotchi",
+      "b"
+    ]
+  },
+  {
+    "id": 296,
+    "names": [
+      "Switch 2"
+    ]
+  },
+  {
+    "id": 299,
+    "names": [
+      "Taito G-Net",
+      "arcade",
+      "arcade,fba,mame-advmame,mame-libretro,mame-mame4all,mame,mess",
+      "arcade,mame,fba,fba_libretro"
+    ]
+  }
+]
