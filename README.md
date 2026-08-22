@@ -7,6 +7,7 @@ A MinUI app that scrapes artwork from the [Libretro Thumbnails Server](https://t
 This pak is designed and tested on the following MinUI Platforms and devices:
 
 - `my355`: Miyoo Flip
+- `h700`: Anbernic RG XX family running the H700 fork of NextUI
 - `tg5040`: Trimui Brick (formerly `tg3040`), Trimui Smart Pro
 - `tg5050`: Trimui Smart Pro S
 
@@ -49,3 +50,15 @@ The "Cache Management" option appears at the top of the emulator list and allows
 ### Debug Logging
 
 Debug logs will be written to the `$SDCARD_PATH/.userdata/$PLATFORM/logs/` folder.
+
+## H700 UI Compatibility
+
+H700 uses the official AArch64 `minui-list-h700-nextui` and
+`minui-presenter-h700-nextui` release assets. Those releases predate the RG SP's
+`rgsp` device token, so the launcher sets the legacy `$RGXX_MODEL` hint to the
+equivalent 720×480, stickless `RG34xx` profile. The real `$DEVICE` value remains
+unchanged.
+
+The H700 package intentionally does not bundle the TrimUI GraphicsMagick binary or
+libraries. H700 is NextUI-only, so artwork is copied to `.media` and NextUI scales
+it at display time.

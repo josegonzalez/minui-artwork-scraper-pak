@@ -22,6 +22,10 @@ export LD_LIBRARY_PATH="$PAK_DIR/lib/$architecture:$PAK_DIR/lib/$PLATFORM:$PAK_D
 export IMAGE_MATCHER_URL="https://matching-images-is.bittersweet.rip"
 export MINUI_IMAGE_WIDTH=300
 
+if [ "$DEVICE" = "rgsp" ]; then
+    export RGXX_MODEL="RG34xx"
+fi
+
 populate_emus_list() {
     ls -A "$SDCARD_PATH/Roms" | sort >/tmp/emus
 
@@ -63,7 +67,7 @@ action_menu() {
     echo "Delete Artwork" >>/tmp/action.list
 
     killall minui-presenter >/dev/null 2>&1 || true
-    minui-list --disable-auto-sleep --item-key "actions" --file "/tmp/action.list" --format text --cancel-text "BACK" --title "$ROM_FOLDER" --write-location /tmp/action-output --write-value state
+    minui-list --disable-auto-sleep --item-key "actions" --file "/tmp/action.list" --format text --cancel-text "BACK" --title "$ROM_FOLDER" --write-location /tmp/action-output --write-value state 1>&2
 
     if [ $? -ne 0 ]; then
         return 1
@@ -85,7 +89,7 @@ delete_menu() {
     echo "Delete Individual Images" >>/tmp/delete.list
 
     killall minui-presenter >/dev/null 2>&1 || true
-    minui-list --disable-auto-sleep --item-key "options" --file "/tmp/delete.list" --format text --cancel-text "BACK" --title "Delete $ROM_FOLDER Artwork" --write-location /tmp/delete-output --write-value state
+    minui-list --disable-auto-sleep --item-key "options" --file "/tmp/delete.list" --format text --cancel-text "BACK" --title "Delete $ROM_FOLDER Artwork" --write-location /tmp/delete-output --write-value state 1>&2
 
     if [ $? -ne 0 ]; then
         return 1
@@ -162,7 +166,10 @@ fetch_artwork() {
     is_nextui=false
     image_folder="res"
     base_directory="$SDCARD_PATH/Roms/$ROM_FOLDER"
-    if [ "$IS_NEXT" = "true" ] || [ "$IS_NEXT" = "yes" ]; then
+    if [ "$PLATFORM" = "h700" ]; then
+        is_nextui=true
+        image_folder="media"
+    elif [ "$IS_NEXT" = "true" ] || [ "$IS_NEXT" = "yes" ]; then
         is_nextui=true
         image_folder="media"
     elif [ -f "$SHARED_USERDATA_PATH/minuisettings.txt" ]; then
@@ -428,7 +435,7 @@ main() {
         export PLATFORM="tg5040"
     fi
 
-    allowed_platforms="my355 tg5040 tg5050"
+    allowed_platforms="h700 my355 tg5040 tg5050"
     if ! echo "$allowed_platforms" | grep -q "$PLATFORM"; then
         show_message "$PLATFORM is not a supported platform" 2
         return 1
