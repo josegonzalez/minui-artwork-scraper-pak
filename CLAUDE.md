@@ -62,11 +62,13 @@ To test locally, you need:
 4. **Platform Detection**
    - Supports `arm` and `arm64` architectures
    - Platform-specific binaries in `bin/{architecture}/` and `bin/{platform}/`
-   - Currently supports `tg5040` platform (Trimui devices)
+   - Supports `h700`, `my355`, `tg5040`, and `tg5050`
+   - H700 uses official `h700-nextui` helper release assets
+   - RG SP is scoped to the helpers' equivalent `rg34xx` UI profile for 720x480 rendering
 
 ### External Dependencies
 
-- **Matching Server API**: `https://matching-images-is.bittersweet.rip/match` - Returns artwork URLs for ROM names
+- **Matching Server API**: `https://matching-images-is.bittersweet.rip/matches/{emu_name}/{art_type}` - Returns artwork URLs for ROM names
 - **Image Source**: Libretro Thumbnails Server - Hosts the actual artwork files
 - **Platform Tools**: `minui-list`, `minui-presenter`, `gm` (GraphicsMagick) - UI and image processing
 
@@ -88,14 +90,14 @@ To test locally, you need:
 External binaries downloaded during build:
 
 - `jq` (v1.7.1) - JSON processing
-- `minui-list` (v0.11.4) - Terminal UI list component
-- `minui-presenter` (v0.7.0) - Message display component
+- `minui-list` (v0.13.0; v0.15.0 for H700) - Terminal UI list component
+- `minui-presenter` (v0.12.0; v0.13.0 for H700) - Message display component
 - `graphicsmagick` (`gm`) - Image resizing (expected on device)
 
 ### Directory Structure
 
 - `bin/`: Platform-specific binaries (jq for ARM/ARM64)
-- `bin/tg5040/`: Platform tools (minui-list, minui-presenter, gm)
+- `bin/{platform}/`: Platform tools (`minui-list`, `minui-presenter`, and where needed `gm`)
 - `lib/tg5040/`: Shared libraries (libjpeg, libpng, libz)
 
 ### Image Processing Flow
@@ -110,9 +112,8 @@ External binaries downloaded during build:
 
 ### Configuration
 
-- Art type selection stored in `.userdata/$PLATFORM/.minui_artwork_scraper/.arttype`
-- Options: snap (default), title, boxart
-- Debug logs written to `.userdata/$PLATFORM/logs/minui_artwork_scraper.log`
+- Options: snap, title, boxart
+- Debug logs are written through `$LOGS_PATH`
 
 ## Development Notes
 

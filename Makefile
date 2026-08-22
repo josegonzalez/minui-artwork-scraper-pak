@@ -6,11 +6,13 @@ PUSH_SDCARD_PATH ?= /mnt/SDCARD
 PUSH_PLATFORM ?= tg5040
 
 ARCHITECTURES := arm arm64
-PLATFORMS := my355 tg5040 tg5050
+PLATFORMS := h700 my355 tg5040 tg5050
 
 JQ_VERSION := 1.7.1
 MINUI_LIST_VERSION := 0.13.0
 MINUI_PRESENTER_VERSION := 0.12.0
+H700_MINUI_LIST_VERSION := 0.15.0
+H700_MINUI_PRESENTER_VERSION := 0.13.0
 
 clean:
 	rm -f bin/*/jq || true
@@ -19,6 +21,16 @@ clean:
 	rm -f bin/*/minui-presenter || true
 
 build: $(foreach platform,$(PLATFORMS),bin/$(platform)/minui-list bin/$(platform)/minui-presenter) $(foreach arch,$(ARCHITECTURES),bin/$(arch)/jq)
+
+bin/h700/minui-list:
+	mkdir -p bin/h700
+	curl -f -o bin/h700/minui-list -sSL https://github.com/josegonzalez/minui-list/releases/download/$(H700_MINUI_LIST_VERSION)/minui-list-h700-nextui
+	chmod +x bin/h700/minui-list
+
+bin/h700/minui-presenter:
+	mkdir -p bin/h700
+	curl -f -o bin/h700/minui-presenter -sSL https://github.com/josegonzalez/minui-presenter/releases/download/$(H700_MINUI_PRESENTER_VERSION)/minui-presenter-h700-nextui
+	chmod +x bin/h700/minui-presenter
 
 bin/arm/jq:
 	mkdir -p bin/arm
