@@ -30,6 +30,16 @@ bin/h700/minui-presenter:
 	curl -f -o bin/h700/minui-presenter -sSL https://github.com/josegonzalez/minui-presenter/releases/download/$(MINUI_PRESENTER_VERSION)/minui-presenter-h700-nextui
 	chmod +x bin/h700/minui-presenter
 
+bin/tg5050/minui-list:
+	mkdir -p bin/tg5050
+	curl -f -o bin/tg5050/minui-list -sSL https://github.com/josegonzalez/minui-list/releases/download/$(MINUI_LIST_VERSION)/minui-list-tg5050-nextui
+	chmod +x bin/tg5050/minui-list
+
+bin/tg5050/minui-presenter:
+	mkdir -p bin/tg5050
+	curl -f -o bin/tg5050/minui-presenter -sSL https://github.com/josegonzalez/minui-presenter/releases/download/$(MINUI_PRESENTER_VERSION)/minui-presenter-tg5050-nextui
+	chmod +x bin/tg5050/minui-presenter
+
 bin/arm/jq:
 	mkdir -p bin/arm
 	curl -f -o bin/arm/jq -sSL https://github.com/jqlang/jq/releases/download/jq-$(JQ_VERSION)/jq-linux-armhf
