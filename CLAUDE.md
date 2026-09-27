@@ -112,8 +112,9 @@ External binaries downloaded during build:
 
 ### Configuration
 
-- Options: snap, title, boxart
-- Debug logs are written through `$LOGS_PATH`
+- Art type selection stored in `.userdata/$PLATFORM/.minui_artwork_scraper/.arttype`
+- Options: snap (default), title, boxart
+- Debug logs written to `.userdata/$PLATFORM/logs/minui_artwork_scraper.log`
 
 ## Development Notes
 
