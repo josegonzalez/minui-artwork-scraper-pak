@@ -7,7 +7,7 @@ A MinUI app that scrapes artwork from the [Libretro Thumbnails Server](https://t
 This pak is designed and tested on the following MinUI Platforms and devices:
 
 - `my355`: Miyoo Flip
-- `h700`: Anbernic RG XX family running the H700 fork of NextUI
+- `h700`: Anbernic RG XX family
 - `tg5040`: Trimui Brick (formerly `tg3040`), Trimui Smart Pro
 - `tg5050`: Trimui Smart Pro S
 
