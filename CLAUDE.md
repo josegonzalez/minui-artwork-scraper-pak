@@ -90,8 +90,8 @@ To test locally, you need:
 External binaries downloaded during build:
 
 - `jq` (v1.7.1) - JSON processing
-- `minui-list` (v0.13.0; v0.15.0 for H700) - Terminal UI list component
-- `minui-presenter` (v0.12.0; v0.13.0 for H700) - Message display component
+- `minui-list` (v0.15.4) - Terminal UI list component
+- `minui-presenter` (v0.13.4) - Message display component
 - `graphicsmagick` (`gm`) - Image resizing (expected on device)
 
 ### Directory Structure
